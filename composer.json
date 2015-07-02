@@ -1,0 +1,31 @@
+{
+    "name": "gckabir/pharam",
+    "description": "An extensible Form Generator for PHP",
+    "license": "MIT",
+    "require": {
+        "symfony/var-dumper": "^2.7",
+        "doctrine/dbal": "^2.5",
+        "symfony/console": "^2.7",
+        "symfony/yaml": "^2.7",
+        "illuminate/filesystem": "^5.1"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "4.5.*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Pharam\\": "src/"
+        }
+    },
+    "scripts": {
+        "post-install-cmd": [
+            "composer dump-autoload --optimize"
+        ],
+        "post-update-cmd": [
+            "composer dump-autoload --optimize"
+        ]
+    },
+    "bin": [
+        "bin/pharam"
+    ]
+}

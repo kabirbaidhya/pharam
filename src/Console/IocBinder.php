@@ -2,6 +2,7 @@
 
 namespace Pharam\Console;
 
+use Pharam\Generator\ColumnHelper;
 use Pharam\Generator\Mapper;
 use Pharam\Generator\Database;
 use Illuminate\Filesystem\Filesystem;
@@ -57,11 +58,13 @@ class IocBinder
             return new Tidy();
         });
 
-
+        $this->container->singleton('column-helper', function ($con) {
+            return new ColumnHelper();
+        });
 
         $this->container->singleton('form-generator', function ($con) {
             $generatorClass = $this->container['config']['generators']['form'];
-            
+
             $generator = new $generatorClass();
             $generator->setContainer($con);
 

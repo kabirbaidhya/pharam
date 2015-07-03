@@ -6,6 +6,9 @@ use Doctrine\DBAL\Schema\Table;
 use Doctrine\DBAL\Schema\Column;
 use Doctrine\DBAL\Types\BooleanType;
 use Doctrine\DBAL\Types\TextType;
+use Pharam\Generator\Element\Date;
+use Pharam\Generator\Element\Email;
+use Pharam\Generator\Element\Numeric;
 use Pharam\Generator\Element\Text;
 use Doctrine\DBAL\Types\StringType;
 use Pharam\Generator\Element\TextArea;
@@ -15,6 +18,18 @@ use Pharam\Generator\Element\ElementInterface;
 
 class Mapper
 {
+    /**
+     * @var ColumnHelper
+     */
+    private $helper;
+
+    /**
+     * @param ColumnHelper $helper
+     */
+    public function __construct(ColumnHelper $helper)
+    {
+        $this->helper = $helper;
+    }
 
     /**
      * @var Table
@@ -63,20 +78,27 @@ class Mapper
         ];
 
         //dump($column);
-        if ($column->getType() instanceof TextType) {
+        if ($this->helper->isText($column)) {
             $element = new TextArea($attributes);
-        } elseif ($column->getType() instanceof StringType) {
+        } elseif ($this->helper->isString($column)) {
             $attributes['maxlength'] = $column->getLength();
             $element = new Text($attributes);
-        } elseif ($column->getType() instanceof BooleanType) {
+        } elseif ($this->helper->isBoolean($column)) {
             $element = new Boolean($attributes);
+        } elseif ($this->helper->isDate($column)) {
+            $element = new Date($attributes);
+        } elseif ($this->helper->isDateTime($column)) {
+            // TODO DateTime
+        } elseif ($this->helper->isEmail($column)) {
+            $element = new Email($attributes);
+        } elseif ($this->helper->isPassword($column)) {
+            // TODO Password
+        } elseif ($this->helper->isSelect($column, $fks)) {
+            $element = new Select($attributes);
+        } elseif ($this->helper->isNumeric($column)) {
+            $element = new Numeric($attributes);
         } else {
-            if (in_array($column->getName(), $fks)) {
-                $element = new Select($attributes);
-            } else {
-                // TODO
-                $element = new Text($attributes);
-            }
+            $element = new Text($attributes);
         }
 
         $element->setRequired($column->getNotnull());

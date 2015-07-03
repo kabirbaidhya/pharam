@@ -4,6 +4,9 @@ return [
     'generators' => [
         'form' => 'Pharam\Generator\FormGenerator'
     ],
+    'paths' => [
+        'form' => 'forms/'
+    ],
     'database' => [
         'dbname' => null,
         'user' => null,

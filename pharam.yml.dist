@@ -1,5 +1,7 @@
 generators:
     form: Pharam\Generator\FormGenerator
+paths:
+    form: ~/Desktop/Kabir/forms
 database:
     dbname: DBNAME
     user: USERNAME

@@ -2,8 +2,9 @@
 
 namespace Pharam\Console;
 
-use Illuminate\Filesystem\Filesystem;
 use Pharam\Generator\Mapper;
+use Pharam\Generator\Database;
+use Illuminate\Filesystem\Filesystem;
 use Symfony\Component\Console\Input\ArgvInput;
 use Symfony\Component\Console\Output\ConsoleOutput;
 use Doctrine\DBAL\Configuration as DbalConfiguration;
@@ -41,8 +42,12 @@ class IocBinder
             return DoctrineDriverManager::getConnection($connectionParams, new DbalConfiguration());
         });
 
+        $this->container->singleton('db', function ($con) {
+            return new Database($con['connection']);
+        });
+
         $this->container->singleton('mapper', function ($con) {
-            return new Mapper($con['connection']);
+            return new Mapper();
         });
 
         $this->container->singleton('form-generator', function ($con) {

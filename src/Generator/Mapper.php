@@ -2,7 +2,6 @@
 
 namespace Pharam\Generator;
 
-use Doctrine\DBAL\Connection;
 use Doctrine\DBAL\Schema\Table;
 use Doctrine\DBAL\Schema\Column;
 use Doctrine\DBAL\Types\TextType;
@@ -14,30 +13,16 @@ use Pharam\Generator\Element\ElementInterface;
 class Mapper
 {
     /**
-     * @var Connection
-     */
-    private $connection;
-
-    /**
      * @var Table
      */
     protected $table;
 
-
     /**
-     * @param Connection $connection
+     * @param Table $table
      */
-    public function __construct(Connection $connection)
+    public function setTable(Table $table)
     {
-        $this->connection = $connection;
-    }
-
-    /**
-     * @param $tableName
-     */
-    public function readTable($tableName)
-    {
-        $this->table = $this->connection->getSchemaManager()->listTableDetails($tableName);
+        $this->table = $table;
     }
 
     public function getElements()

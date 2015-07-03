@@ -4,7 +4,6 @@ namespace Pharam\Console\Commands;
 
 use Pharam\Application;
 use Pharam\Console\Command;
-use InvalidArgumentException;
 use Illuminate\Filesystem\Filesystem;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -25,7 +24,7 @@ class InitCommand extends Command
         $destinationFile = getcwd() . '/' . Application::APP_CONFIG_FILE;
 
         if ($fileSystem->exists($destinationFile)) {
-            throw new InvalidArgumentException('Config file has already been initialized.');
+            throw new \Exception('Config file has already been initialized.');
         }
 
         $fileSystem->copy($sourceFile, $destinationFile);

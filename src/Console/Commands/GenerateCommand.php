@@ -29,6 +29,7 @@ class GenerateCommand extends Command
         return [
             ['all', 'a', InputOption::VALUE_NONE, 'Generates for all project'],
             ['extension', 'x', InputOption::VALUE_OPTIONAL, 'Specify extension explicitly', 'php'],
+            ['dump', 'd', InputOption::VALUE_NONE, 'Preview the generated form output'],
         ];
     }
 
@@ -43,6 +44,8 @@ class GenerateCommand extends Command
     {
         $all = $input->getOption('all');
         $extension = $input->getOption('extension');
+        $dump = $input->getOption('dump');
+
         $db = $this->getContainer()->make('db');
 
         if ($all === true) {
@@ -72,10 +75,18 @@ class GenerateCommand extends Command
 
         foreach ($tables as $table) {
             $mapper->setTable($table);
-            $html = $generator->setMapper($mapper)->generate();
+            $content = $generator->setMapper($mapper)->generate();
 
-            $filePath = $formPath . sprintf('%s.%s', $table->getName(), $extension);
-            $filesystem->put($filePath, $html);
+            $output->writeln('<comment>Generating Form for table:</comment> ' . $table->getName());
+
+            if ($dump === true) {
+                $output->writeln($content);
+            } else {
+                $filePath = $formPath . sprintf('%s.%s', $table->getName(), $extension);
+
+                $filesystem->put($filePath, $content);
+                $output->writeln('<comment>Generated:</comment> ' . $filePath);
+            }
         }
     }
 }

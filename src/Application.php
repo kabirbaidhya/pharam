@@ -17,6 +17,7 @@ class Application extends AbstractApplication
     const APP_VERSION = '0.1.0';
     //
     const APP_CONFIG_FILE = 'pharam.yml';
+    const DIST_CONFIG_FILE = 'pharam.yml.dist';
 
     /**
      * @var IocBinder

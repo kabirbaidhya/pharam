@@ -6,5 +6,8 @@ class TextArea extends AbstractElement
 {
     public function getHtml()
     {
+        $input = form_textarea($this);
+        return $input;
     }
+
 }

@@ -7,11 +7,20 @@ namespace Pharam\Generator;
  */
 class FormGenerator extends AbstractFormGenerator
 {
+
+    protected $htmlOutput;
+
     public function generate()
     {
         foreach ($this->getElements() as $element) {
-            echo $element->getHtml();
+           $this->pushHTML($element);
         }
+        echo $this->htmlOutput;
+    }
+
+    protected function pushHTML($element)
+    {
+        $this->htmlOutput.=get_container($element);
     }
 
 }

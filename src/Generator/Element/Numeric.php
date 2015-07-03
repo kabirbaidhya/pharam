@@ -6,9 +6,10 @@ namespace Pharam\Generator\Element;
 class Numeric extends AbstractElement
 {
 
-    public function getHtml()
+     public function getHtml()
     {
-        // TODO: Implement getHtml() method.
+        $input = form_input('number', $this);
+        return $input;
     }
 
 }

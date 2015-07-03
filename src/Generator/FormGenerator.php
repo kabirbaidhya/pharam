@@ -3,8 +3,7 @@
 namespace Pharam\Generator;
 
 /**
- *
- * @author Kabir Baidhya
+ * Default Form Generator
  */
 class FormGenerator implements FormGeneratorInterface
 {

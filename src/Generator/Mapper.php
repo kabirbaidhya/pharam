@@ -33,17 +33,18 @@ class Mapper
         }
 
         $elements = [];
-        $fks = array();
+        $fks = [];
         $fk = $this->table->getForeignKeys();
-        if(!empty($fk)){
-            foreach($fk as $f) {
+        if (!empty($fk)) {
+            foreach ($fk as $f) {
                 $fks = array_merge($fks, $f->getLocalColumns());
             }
 
         };
         foreach ($this->table->getColumns() as $column) {
-            $elements[] = $this->mapColumn($column,$fks);
+            $elements[] = $this->mapColumn($column, $fks);
         }
+
         return $elements;
     }
 
@@ -51,7 +52,7 @@ class Mapper
      * @param Column $column
      * @return ElementInterface
      */
-    protected function mapColumn(Column $column , $fks)
+    protected function mapColumn(Column $column, $fks)
     {
         $attributes = [
             'name' => $column->getName(),
@@ -63,13 +64,15 @@ class Mapper
         if ($column->getType() instanceof TextType) {
             $element = new TextArea($attributes);
         } elseif ($column->getType() instanceof StringType) {
-            $attributes['length'] = $column->getLength();
+            $attributes['maxlength'] = $column->getLength();
             $element = new Text($attributes);
-        } else if(in_array($column->getName(),$fks)){
-            $element = new Select($attributes);
         } else {
-            // TODO
-            $element = new Text($attributes);
+            if (in_array($column->getName(), $fks)) {
+                $element = new Select($attributes);
+            } else {
+                // TODO
+                $element = new Text($attributes);
+            }
         }
 
         $element->setRequired($column->getNotnull());

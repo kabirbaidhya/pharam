@@ -69,7 +69,7 @@ class GenerateCommand extends Command
         if (!$filesystem->isDirectory($formPath)) {
             throw new \Exception(sprintf("Path %s doesn't exist", $formPath));
         }
-        
+
         foreach ($tables as $table) {
             $mapper->setTable($table);
             $html = $generator->setMapper($mapper)->generate();

@@ -7,9 +7,12 @@ use Pharam\Console\ServiceContainer;
 use Pharam\Console\AbstractApplication;
 use Pharam\Console\Commands\InitCommand;
 use Pharam\Console\Commands\GenerateCommand;
+use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Output\OutputInterface;
 
 class Application extends AbstractApplication
 {
+
     const APP_NAME = 'Pharam';
     const APP_VERSION = '0.1.0';
     //
@@ -44,11 +47,11 @@ class Application extends AbstractApplication
         ];
     }
 
-    public function run()
+    public function run(InputInterface $input = null, OutputInterface $output = null)
     {
         $this->binder->postBind($this->getConfig());
 
-        return parent::run();
+        return parent::run($input, $output);
     }
 
 

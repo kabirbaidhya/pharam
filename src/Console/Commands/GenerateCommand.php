@@ -2,13 +2,13 @@
 
 namespace Pharam\Console\Commands;
 
-use Illuminate\Filesystem\Filesystem;
 use Pharam\Console\Command;
-use Pharam\Generator\FormGeneratorInterface;
 use Pharam\Generator\Mapper;
+use Illuminate\Filesystem\Filesystem;
+use Pharam\Generator\FormGeneratorInterface;
+use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
 class GenerateCommand extends Command
@@ -27,7 +27,8 @@ class GenerateCommand extends Command
     protected function getOptions()
     {
         return [
-            ['all', 'a', InputOption::VALUE_NONE],
+            ['all', 'a', InputOption::VALUE_NONE, 'Generates for all project'],
+            ['extension', 'x', InputOption::VALUE_OPTIONAL, 'Specify extension explicitly', 'php'],
         ];
     }
 
@@ -41,6 +42,7 @@ class GenerateCommand extends Command
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $all = $input->getOption('all');
+        $extension = $input->getOption('extension');
         $db = $this->getContainer()->make('db');
 
         if ($all === true) {
@@ -72,11 +74,8 @@ class GenerateCommand extends Command
             $mapper->setTable($table);
             $html = $generator->setMapper($mapper)->generate();
 
-            $filePath = $formPath . $table->getName() . '.php';
+            $filePath = $formPath . sprintf('%s.%s', $table->getName(), $extension);
             $filesystem->put($filePath, $html);
         }
-
     }
-
-
 }

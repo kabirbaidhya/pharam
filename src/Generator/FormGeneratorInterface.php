@@ -1,6 +1,6 @@
 <?php
 
-namespace Pharam\Core;
+namespace Pharam\Generator;
 
 interface FormGeneratorInterface
 {

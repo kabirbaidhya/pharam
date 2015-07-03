@@ -2,17 +2,12 @@
 
 namespace Pharam;
 
-use Pharam\Traits\ConfigurableTrait;
-use Symfony\Component\Console\Application as SymfonyApplication;
+use Pharam\Console\AbstractApplication;
+use Pharam\Console\Commands\InitCommand;
+use Pharam\Console\Commands\GenerateCommand;
 
-/**
- *
- * @author Kabir Baidhya
- */
-class Application extends SymfonyApplication
+class Application extends AbstractApplication
 {
-    use ConfigurableTrait;
-
     const APP_NAME = 'Pharam';
     const APP_VERSION = '0.1.0';
     //
@@ -21,5 +16,18 @@ class Application extends SymfonyApplication
     public function __construct()
     {
         parent::__construct(static::APP_NAME, static::APP_VERSION);
+    }
+
+    /**
+     * Returns the list of commands that the application exposes
+     *
+     * @return array
+     */
+    protected function getCommands()
+    {
+        return [
+            InitCommand::class,
+            GenerateCommand::class,
+        ];
     }
 }

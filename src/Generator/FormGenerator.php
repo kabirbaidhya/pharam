@@ -1,9 +1,6 @@
 <?php
 
-namespace Core;
-
-use Pharam\Core\FormGeneratorInterface;
-
+namespace Pharam\Generator;
 
 /**
  *

@@ -1,8 +1,8 @@
 <?php
 
-namespace Core\Field;
+namespace Pharam\Generator\Field;
 
-class Date implements FieldInterface
+class TextArea implements FieldInterface
 {
 
     public function getHtml()

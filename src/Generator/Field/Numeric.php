@@ -1,6 +1,6 @@
 <?php
 
-namespace Core\Field;
+namespace Pharam\Generator\Field;
 
 class Numeric implements FieldInterface
 {

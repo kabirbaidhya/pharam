@@ -1,6 +1,6 @@
 <?php
 
-namespace Pharam\Traits;
+namespace Pharam\Console\Traits;
 
 use Pharam\Application;
 use Symfony\Component\Yaml\Yaml;

@@ -12,6 +12,8 @@ class FormGenerator extends AbstractFormGenerator
         foreach ($this->getElements() as $element) {
             echo $element->getHtml();
         }
+
+        return 'Hello World form';
     }
 
 }

@@ -15,6 +15,7 @@ class TextArea extends AbstractElement
 
     public function getHtml()
     {
+<<<<<<< HEAD
         // TODO: Implement getHtml() method.
        $input = " <textarea";
         if (is_array($this->params)) {
@@ -27,5 +28,10 @@ class TextArea extends AbstractElement
         $input.="></textarea>";
 
         return $input;
+=======
+        dump('textarea', $this);
+>>>>>>> aabca0fb06211bc94a1432ea8a1c761f1d6b155b
     }
+
+  
 }

@@ -2,7 +2,8 @@
 
 namespace Pharam\Generator\Element;
 
-class TextArea extends AbstractElement
+
+class Text extends AbstractElement
 {
 
      protected $params;
@@ -10,22 +11,25 @@ class TextArea extends AbstractElement
     function __construct($params = array())
     {
         $this->params = $params;
-        print_r($this->params);
     }
 
     public function getHtml()
     {
+<<<<<<< HEAD
         // TODO: Implement getHtml() method.
-       $input = " <textarea";
+        $input = '<input type="text"';
         if (is_array($this->params)) {
             foreach ($this->params as $key => $val) {
-                 if (strcmp($key, 'class') == 0 && $val == '')
+                if (strcmp($key, 'class') == 0 && $val == '')
                     continue;
                 $input.=" " . $key . "=\"" . $val . "\"";
             }
         }
-        $input.="></textarea>";
-
+        $input .= " />";
         return $input;
+=======
+        dump('text field', $this);
+>>>>>>> aabca0fb06211bc94a1432ea8a1c761f1d6b155b
     }
+
 }

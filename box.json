@@ -1,0 +1,15 @@
+{
+    "chmod": "0755",
+    "main": "bin/pharam",
+    "output": "release/pharam.phar",
+    "files": [
+        "LICENSE",
+        "README.md"
+    ],
+    "directories": [
+        "src/",
+        "config/",
+        "vendor/"
+    ],
+    "stub": true
+}

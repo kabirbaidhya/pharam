@@ -1,12 +1,10 @@
 <?php
 
-namespace Pharam\Generator\Element;
+namespace Pharam\Generator\Field;
 
-
-class Numeric implements ElementInterface
+class Select implements FieldInterface
 {
-
-    protected $params;
+ protected $params;
 
     function __construct($params = array())
     {
@@ -16,13 +14,22 @@ class Numeric implements ElementInterface
     public function getHtml()
     {
         // TODO: Implement getHtml() method.
-        $input = '<input type="number"';
+        $input = " <select";
         if (is_array($this->params)) {
             foreach ($this->params as $key => $val) {
+                if (strcmp($key, "value") == 0)
+                    continue;
                 $input.=" " . $key . "=\"" . $val . "\"";
             }
         }
-        $input . " />";
+        $input.=">";
+        if (is_array($this->params['value'])) {
+            foreach ($this->params['value'] as $key => $val) {
+                $input.="<option value=\"" . $key . "\">" . $val . "</option>";
+            }
+        }
+        $input.="</select>";
+
         return $input;
     }
 

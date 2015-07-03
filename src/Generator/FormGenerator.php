@@ -2,20 +2,38 @@
 
 namespace Pharam\Generator;
 
+use Pharam\Generator\Field\Date;
+
 /**
  * Default Form Generator
  */
 class FormGenerator implements FormGeneratorInterface
 {
+
     public function generate()
     {
-        foreach ($this->getFields() as $field) {
-            echo $field->getHtml();
+        // TODO: Implement generate() method.
+       
+        if (is_object($objAllElemnt)) {
+            foreach ($objAllElemnt as $propElement) {
+                $htmlOutput.=$this->divZendContainer($propElement);
+            }
         }
+        
+
     }
 
-    public function getElements()
+    public function divZendContainer($objElement)
     {
-        // TODO: Implement getFields() method.
+        $divOutput = '<div class="group">
+                        <label>Transaction:</label>
+                        <div class="controls">';
+        if (is_object($objElement)) {
+            $divOutput.=$objProp->Field->getHtml();
+        }
+        $divOutput.=' </div>
+                    </div>';
+        return $divOutput;
     }
+
 }

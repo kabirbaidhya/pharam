@@ -3,5 +3,4 @@ composer.lock
 vendor/
 pharam.yml
 release/
-.idea
-
+/nbproject/private/

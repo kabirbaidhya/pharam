@@ -1,0 +1,11 @@
+composer.phar
+composer.lock
+vendor/
+pharam.yml
+release/
+<<<<<<< Updated upstream
+.idea
+
+=======
+/nbproject/private/
+>>>>>>> Stashed changes

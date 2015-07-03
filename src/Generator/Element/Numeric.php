@@ -3,7 +3,7 @@
 namespace Pharam\Generator\Element;
 
 
-class Numeric implements ElementInterface
+class Numeric extends AbstractElement
 {
 
     protected $params;
@@ -24,11 +24,6 @@ class Numeric implements ElementInterface
         }
         $input . " />";
         return $input;
-    }
-
-    public function getName()
-    {
-        // TODO: Implement getName() method.
     }
 
 }

@@ -3,7 +3,7 @@
 namespace Pharam\Generator\Element;
 
 
-class Email implements ElementInterface
+class Email extends AbstractElement
 {
 
      protected $params;
@@ -26,8 +26,4 @@ class Email implements ElementInterface
         return $input;
     }
 
-    public function getName()
-    {
-        // TODO: Implement getName() method.
-    }
 }

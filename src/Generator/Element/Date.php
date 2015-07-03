@@ -3,7 +3,7 @@
 namespace Pharam\Generator\Element;
 
 
-class Date implements ElementInterface
+class Date extends AbstractElement
 {
 
      protected $params;
@@ -26,8 +26,4 @@ class Date implements ElementInterface
         return $input;
     }
 
-    public function getName()
-    {
-        // TODO: Implement getName() method.
-    }
 }

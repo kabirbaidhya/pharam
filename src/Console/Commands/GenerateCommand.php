@@ -2,8 +2,8 @@
 
 namespace Pharam\Console\Commands;
 
-use Doctrine\DBAL\Connection;
 use Pharam\Console\Command;
+use Pharam\Generator\Mapper;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Pharam\Generator\FormGenerator;
@@ -16,10 +16,14 @@ class GenerateCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        /** @var Connection $connection */
-        $connection = $this->getContainer()['connection'];
+        /** @var Mapper $mapper */
+        $mapper = $this->container->make('mapper');
+        $mapper->readTable('user');
 
-        dump($connection->getSchemaManager()->listTables());
+        $generator = $this->getContainer()->make('form-generator');
+
+        $html = $generator->setMapper($mapper)->generate();
+        echo $html;
     }
 
 

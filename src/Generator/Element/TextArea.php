@@ -2,7 +2,7 @@
 
 namespace Pharam\Generator\Element;
 
-class TextArea implements ElementInterface
+class TextArea extends AbstractElement
 {
 
      protected $params;
@@ -10,6 +10,7 @@ class TextArea implements ElementInterface
     function __construct($params = array())
     {
         $this->params = $params;
+        print_r($this->params);
     }
 
     public function getHtml()
@@ -18,18 +19,15 @@ class TextArea implements ElementInterface
        $input = " <textarea";
         if (is_array($this->params)) {
             foreach ($this->params as $key => $val) {
-                if (strcmp($key, "value") == 0)
+                 if (strcmp($key, 'class') == 0 && $val == '')
                     continue;
                 $input.=" " . $key . "=\"" . $val . "\"";
             }
         }
-        $input.=">" . $this->params['value'] . "</textarea>";
+        $input.="></textarea>";
 
         return $input;
     }
 
-    public function getName()
-    {
-        // TODO: Implement getName() method.
-    }
+  
 }

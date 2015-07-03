@@ -3,7 +3,7 @@
 namespace Pharam\Generator\Element;
 
 
-class Text implements ElementInterface
+class Text extends AbstractElement
 {
 
      protected $params;
@@ -19,15 +19,13 @@ class Text implements ElementInterface
         $input = '<input type="text"';
         if (is_array($this->params)) {
             foreach ($this->params as $key => $val) {
+                if (strcmp($key, 'class') == 0 && $val == '')
+                    continue;
                 $input.=" " . $key . "=\"" . $val . "\"";
             }
         }
-        $input . " />";
+        $input .= " />";
         return $input;
     }
 
-    public function getName()
-    {
-        // TODO: Implement getName() method.
-    }
 }

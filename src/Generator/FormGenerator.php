@@ -2,28 +2,54 @@
 
 namespace Pharam\Generator;
 
-use Pharam\Generator\Field\Date;
-
 /**
  * Default Form Generator
  */
 class FormGenerator implements FormGeneratorInterface
 {
+    /**
+     * @var Mapper
+     */
+    protected $mapper;
 
-    public function generate()
+    /**
+     * @param Mapper $mapper
+     * @return $this
+     */
+    public function setMapper(Mapper $mapper)
     {
-        // TODO: Implement generate() method.
-       
-        if (is_object($objAllElemnt)) {
-            foreach ($objAllElemnt as $propElement) {
-                $htmlOutput.=$this->divZendContainer($propElement);
-            }
-        }
-        
+        $this->mapper = $mapper;
+
+        return $this;
 
     }
 
-    public function divZendContainer($objElement)
+    /**
+     * @return Mapper
+     * @throws \Exception
+     */
+    public function getMapper()
+    {
+        if (!$this->mapper) {
+            throw new \Exception('Mapper not set');
+        }
+
+        return $this->mapper;
+    }
+
+    public function generate()
+    {
+        foreach ($this->getElements() as $element) {
+            echo $element->getHtml();
+        }
+    }
+
+    public function getElements()
+    {
+        return $this->getMapper()->getElements();
+    }
+
+public function divZendContainer($objElement)
     {
         $divOutput = '<div class="group">
                         <label>Transaction:</label>
@@ -35,5 +61,4 @@ class FormGenerator implements FormGeneratorInterface
                     </div>';
         return $divOutput;
     }
-
 }

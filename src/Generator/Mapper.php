@@ -51,7 +51,7 @@ class Mapper
         foreach ($columns as $column) {
             $elements[] = $this->mapColumn($column);
         }
-
+        dump($elements);die();
         return $elements;
     }
 
@@ -70,12 +70,14 @@ class Mapper
         if ($column->getType() instanceof TextType) {
             $element = new TextArea($attributes);
         } elseif ($column->getType() instanceof StringType) {
+            $attributes['length'] = $column->getLength();
             $element = new Text($attributes);
         } else {
             // TODO
             $element = new Text($attributes);
         }
 
+        $element->setRequired($column->getNotnull());
         return $element;
     }
 

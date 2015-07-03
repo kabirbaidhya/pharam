@@ -9,6 +9,7 @@ abstract class AbstractElement implements ElementInterface
      */
     protected $attributes;
     protected $label;
+    protected $required;
 
     public function __construct(array $attributes)
     {
@@ -55,5 +56,15 @@ abstract class AbstractElement implements ElementInterface
     public function setLabel($label)
     {
         $this->label = $label;
+    }
+
+    public function isRequired()
+    {
+        return  $this->required;
+    }
+
+    public function setRequired($required)
+    {
+        $this->required = $required;
     }
 }

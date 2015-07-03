@@ -22,4 +22,8 @@ interface ElementInterface
     public function getLabel();
 
     public function setLabel($label);
+
+    public function isRequired();
+
+    public function setRequired($required);
 }

@@ -22,7 +22,7 @@ class GenerateCommand extends Command
         $generator = $this->getContainer()->make('form-generator');
 
         $html = $generator->setMapper($mapper)->generate();
-        echo $html;
+
     }
 
 

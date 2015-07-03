@@ -5,38 +5,8 @@ namespace Pharam\Generator;
 /**
  * Default Form Generator
  */
-class FormGenerator implements FormGeneratorInterface
+class FormGenerator extends AbstractFormGenerator
 {
-    /**
-     * @var Mapper
-     */
-    protected $mapper;
-
-    /**
-     * @param Mapper $mapper
-     * @return $this
-     */
-    public function setMapper(Mapper $mapper)
-    {
-        $this->mapper = $mapper;
-
-        return $this;
-
-    }
-
-    /**
-     * @return Mapper
-     * @throws \Exception
-     */
-    public function getMapper()
-    {
-        if (!$this->mapper) {
-            throw new \Exception('Mapper not set');
-        }
-
-        return $this->mapper;
-    }
-
     public function generate()
     {
         foreach ($this->getElements() as $element) {
@@ -44,8 +14,4 @@ class FormGenerator implements FormGeneratorInterface
         }
     }
 
-    public function getElements()
-    {
-        return $this->getMapper()->getElements();
-    }
 }

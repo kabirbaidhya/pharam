@@ -46,12 +46,11 @@ class Mapper
             throw new \Exception('Table not set');
         }
 
-        $columns = $this->table->getColumns();
         $elements = [];
-        foreach ($columns as $column) {
+        foreach ($this->table->getColumns() as $column) {
             $elements[] = $this->mapColumn($column);
         }
-        dump($elements);die();
+
         return $elements;
     }
 
@@ -78,7 +77,7 @@ class Mapper
         }
 
         $element->setRequired($column->getNotnull());
+
         return $element;
     }
-
 }

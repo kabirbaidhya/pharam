@@ -8,7 +8,6 @@ class Text extends AbstractElement
 
     public function getHtml()
     {
-        dump('text field', $this);
     }
 
 }

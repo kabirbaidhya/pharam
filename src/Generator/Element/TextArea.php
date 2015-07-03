@@ -1,8 +1,8 @@
 <?php
 
-namespace Pharam\Generator\Field;
+namespace Pharam\Generator\Element;
 
-class Email implements FieldInterface
+class TextArea implements ElementInterface
 {
 
     public function getHtml()

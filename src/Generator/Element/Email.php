@@ -1,13 +1,12 @@
 <?php
 
-namespace Pharam\Generator\Field;
+namespace Pharam\Generator\Element;
 
-class TextArea implements FieldInterface
+
+class Email implements ElementInterface
 {
-
     public function getHtml()
     {
-        // TODO: Implement getHtml() method.
     }
 
     public function getName()

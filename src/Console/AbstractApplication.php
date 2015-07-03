@@ -3,9 +3,8 @@
 namespace Pharam\Console;
 
 use Pharam\Console\Traits\ConfigurableTrait;
+use Pharam\Console\Traits\ContainerAwareTrait;
 use Symfony\Component\Console\Application as SymfonyApplication;
-use Symfony\Component\Console\Input\ArgvInput;
-use Symfony\Component\Console\Output\ConsoleOutput;
 
 /**
  *
@@ -13,6 +12,7 @@ use Symfony\Component\Console\Output\ConsoleOutput;
 abstract class AbstractApplication extends SymfonyApplication
 {
     use ConfigurableTrait;
+    use ContainerAwareTrait;
 
     /**
      * Returns the list of commands that the application exposes
@@ -26,13 +26,14 @@ abstract class AbstractApplication extends SymfonyApplication
      */
     public function run()
     {
-        $input = new ArgvInput();
-        $output = new ConsoleOutput();
-
         foreach ($this->getCommands() as $commandClass) {
             $command = new $commandClass();
+            $command->setContainer($this->getContainer());
             $this->add($command);
         }
+
+        $input = $this->getContainer()->make('input');
+        $output = $this->getContainer()->make('output');
 
         return parent::run($input, $output);
     }

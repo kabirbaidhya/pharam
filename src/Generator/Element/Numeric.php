@@ -1,9 +1,9 @@
 <?php
 
-namespace Pharam\Generator\Field;
+namespace Pharam\Generator\Element;
 
 
-class Date implements FieldInterface
+class Numeric implements ElementInterface
 {
 
     public function getHtml()

@@ -1,8 +1,9 @@
 <?php
 
-namespace Pharam\Generator\Field;
+namespace Pharam\Generator\Element;
 
-interface FieldInterface
+
+interface ElementInterface
 {
     public function getName();
 

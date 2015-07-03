@@ -2,6 +2,7 @@
 
 namespace Pharam\Console;
 
+use Pharam\Console\Traits\ContainerAwareTrait;
 use Symfony\Component\Console\Command\Command as SymfonyCommand;
 
 /**
@@ -9,6 +10,8 @@ use Symfony\Component\Console\Command\Command as SymfonyCommand;
  */
 class Command extends SymfonyCommand
 {
+    use ContainerAwareTrait;
+
     protected $name;
 
     protected $description;

@@ -7,9 +7,15 @@ namespace Pharam\Generator;
  */
 class FormGenerator implements FormGeneratorInterface
 {
-
     public function generate()
     {
-        // TODO: Implement generate() method.
+        foreach ($this->getFields() as $field) {
+            echo $field->getHtml();
+        }
+    }
+
+    public function getElements()
+    {
+        // TODO: Implement getFields() method.
     }
 }

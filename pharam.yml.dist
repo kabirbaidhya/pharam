@@ -1,0 +1,8 @@
+generators:
+    form: Pharam\Generator\FormGenerator
+database:
+    dbname: DBNAME
+    user: USERNAME
+    password: PASSWORD
+    host: HOST
+    driver: DRIVER

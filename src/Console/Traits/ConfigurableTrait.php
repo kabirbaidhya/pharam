@@ -4,7 +4,6 @@ namespace Pharam\Console\Traits;
 
 use Pharam\Application;
 use Symfony\Component\Yaml\Yaml;
-use Illuminate\Filesystem\Filesystem;
 
 /**
  * Reading config from the file
@@ -24,11 +23,20 @@ trait ConfigurableTrait
      */
     public function autodetectConfig()
     {
-        $filesystem = new Filesystem();
+        $filesystem = $this->getContainer()->make('filesystem');
         $configPath = getcwd() . '/' . Application::APP_CONFIG_FILE;
+
+        $defaultConfig = $filesystem->getRequire('config/default.config.php');
+
         if ($filesystem->exists($configPath)) {
-            $this->setConfig(Yaml::parse($filesystem->get()));
+            $userConfig = Yaml::parse($filesystem->get($configPath));
+        } else {
+            $userConfig = [];
         }
+
+        $config = $userConfig + $defaultConfig;
+
+        $this->setConfig($config);
 
         return $this;
     }

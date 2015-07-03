@@ -1,8 +1,9 @@
 <?php
 
-namespace Pharam\Generator\Field;
+namespace Pharam\Generator\Element;
 
-class Numeric implements FieldInterface
+
+class Text implements ElementInterface
 {
 
     public function getHtml()

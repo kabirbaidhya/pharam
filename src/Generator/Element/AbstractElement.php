@@ -14,7 +14,7 @@ abstract class AbstractElement implements ElementInterface
     {
         $this->setAttributes($attributes);
 
-        $this->label = ucwords(str_replace('_', ' ', $this->getAttribute('name')));
+        $this->label = human_readable($this->getName());
     }
 
     public function getName()

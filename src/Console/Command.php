@@ -10,10 +10,10 @@ use Symfony\Component\Console\Command\Command as SymfonyCommand;
  */
 class Command extends SymfonyCommand
 {
+
     use ContainerAwareTrait;
 
     protected $name;
-
     protected $description;
 
     public function __construct()
@@ -58,4 +58,5 @@ class Command extends SymfonyCommand
             call_user_func_array([$this, 'addOption'], $options);
         }
     }
+
 }

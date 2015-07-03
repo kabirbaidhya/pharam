@@ -13,8 +13,8 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 class GenerateCommand extends Command
 {
-    protected $name = 'generate';
 
+    protected $name = 'generate';
     protected $description = 'Generates the Form';
 
     protected function getArguments()
@@ -32,7 +32,6 @@ class GenerateCommand extends Command
             ['dump', 'd', InputOption::VALUE_NONE, 'Preview the generated form output'],
         ];
     }
-
 
     /**
      * @param InputInterface $input
@@ -89,4 +88,5 @@ class GenerateCommand extends Command
             }
         }
     }
+
 }

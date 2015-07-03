@@ -4,11 +4,13 @@ namespace Pharam\Generator;
 
 use Doctrine\DBAL\Schema\Table;
 use Doctrine\DBAL\Schema\Column;
+use Doctrine\DBAL\Types\BooleanType;
 use Doctrine\DBAL\Types\TextType;
 use Pharam\Generator\Element\Text;
 use Doctrine\DBAL\Types\StringType;
 use Pharam\Generator\Element\TextArea;
 use Pharam\Generator\Element\Select;
+use Pharam\Generator\Element\Boolean;
 use Pharam\Generator\Element\ElementInterface;
 
 class Mapper
@@ -66,6 +68,8 @@ class Mapper
         } elseif ($column->getType() instanceof StringType) {
             $attributes['maxlength'] = $column->getLength();
             $element = new Text($attributes);
+        } elseif ($column->getType() instanceof BooleanType) {
+            $element = new Boolean($attributes);
         } else {
             if (in_array($column->getName(), $fks)) {
                 $element = new Select($attributes);

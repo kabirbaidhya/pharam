@@ -47,6 +47,24 @@ if (!function_exists('form_textarea')) {
 
 }
 
+if (!function_exists('form_select')) {
+
+    function form_select($element)
+    {
+        $inputElement = '<select';
+        $required = $element->isRequired() ? "required" : null;
+        foreach ($element->getAttributes() as $key => $val) {
+            if ($val == '')
+                continue;
+            $inputElement.=" " . $key . "=\"" . $val . "\" ";
+        }
+        $inputElement.=$required;
+        $inputElement.="></select>";
+        return $inputElement;
+    }
+
+}
+
 if (!function_exists('get_container')) {
 
     function get_container($element)
@@ -63,3 +81,5 @@ if (!function_exists('get_container')) {
     }
 
 }
+
+

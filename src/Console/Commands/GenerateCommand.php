@@ -13,8 +13,8 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 class GenerateCommand extends Command
 {
-    protected $name = 'generate';
 
+    protected $name = 'generate';
     protected $description = 'Generates the Form';
 
     protected function getArguments()
@@ -31,7 +31,6 @@ class GenerateCommand extends Command
             ['extension', 'x', InputOption::VALUE_OPTIONAL, 'Specify extension explicitly', 'php'],
         ];
     }
-
 
     /**
      * @param InputInterface $input
@@ -78,4 +77,5 @@ class GenerateCommand extends Command
             $filesystem->put($filePath, $html);
         }
     }
+
 }

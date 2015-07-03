@@ -13,6 +13,7 @@ use Pharam\Generator\Element\ElementInterface;
 
 class Mapper
 {
+
     /**
      * @var Table
      */
@@ -39,7 +40,6 @@ class Mapper
             foreach ($fk as $f) {
                 $fks = array_merge($fks, $f->getLocalColumns());
             }
-
         };
         foreach ($this->table->getColumns() as $column) {
             $elements[] = $this->mapColumn($column, $fks);
@@ -79,4 +79,5 @@ class Mapper
 
         return $element;
     }
+
 }

@@ -1,6 +1,7 @@
 <?php
 
 if (!function_exists('human_readable')) {
+
     function human_readable($input)
     {
         $output = preg_replace(['/(?<=[^A-Z])([A-Z])/', '/(?<=[^0-9])([0-9])/'], ' $0', $input);
@@ -9,6 +10,7 @@ if (!function_exists('human_readable')) {
 
         return $output;
     }
+
 }
 
 if (!function_exists('form_input')) {
@@ -65,6 +67,7 @@ if (!function_exists('form_select')) {
 
 }
 
+
 if (!function_exists('get_container')) {
 
     function get_container($element)
@@ -81,5 +84,3 @@ if (!function_exists('get_container')) {
     }
 
 }
-
-

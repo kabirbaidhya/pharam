@@ -4,6 +4,7 @@ namespace Pharam\Generator;
 
 abstract class AbstractFormGenerator implements FormGeneratorInterface
 {
+
     /**
      * @var Mapper
      */
@@ -18,7 +19,6 @@ abstract class AbstractFormGenerator implements FormGeneratorInterface
         $this->mapper = $mapper;
 
         return $this;
-
     }
 
     /**
@@ -38,4 +38,5 @@ abstract class AbstractFormGenerator implements FormGeneratorInterface
     {
         return $this->getMapper()->getElements();
     }
+
 }

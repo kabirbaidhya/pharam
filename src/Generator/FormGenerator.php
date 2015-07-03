@@ -7,6 +7,7 @@ namespace Pharam\Generator;
  */
 class FormGenerator extends AbstractFormGenerator
 {
+
     public function generate()
     {
         $html = '';

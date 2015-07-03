@@ -3,7 +3,7 @@
 namespace Pharam\Generator\Element;
 
 
-class Numeric implements ElementInterface
+class Numeric extends AbstractElement
 {
 
     public function getHtml()
@@ -11,8 +11,4 @@ class Numeric implements ElementInterface
         // TODO: Implement getHtml() method.
     }
 
-    public function getName()
-    {
-        // TODO: Implement getName() method.
-    }
 }

@@ -3,7 +3,7 @@
 namespace Pharam\Generator\Element;
 
 
-class Date implements ElementInterface
+class Date extends AbstractElement
 {
 
     public function getHtml()
@@ -11,8 +11,4 @@ class Date implements ElementInterface
         // TODO: Implement getHtml() method.
     }
 
-    public function getName()
-    {
-        // TODO: Implement getName() method.
-    }
 }

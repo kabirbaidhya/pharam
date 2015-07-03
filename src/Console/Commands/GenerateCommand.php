@@ -2,7 +2,9 @@
 
 namespace Pharam\Console\Commands;
 
+use Illuminate\Filesystem\Filesystem;
 use Pharam\Console\Command;
+use Pharam\Generator\FormGeneratorInterface;
 use Pharam\Generator\Mapper;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
@@ -33,8 +35,8 @@ class GenerateCommand extends Command
     /**
      * @param InputInterface $input
      * @param OutputInterface $output
-     *
      * @return int|null|void
+     * @throws \Exception
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
@@ -54,14 +56,24 @@ class GenerateCommand extends Command
 
         /** @var Mapper $mapper */
         $mapper = $this->container->make('mapper');
+
+        /** @var FormGeneratorInterface $generator */
         $generator = $this->getContainer()->make('form-generator');
+
+        /** @var Filesystem $filesystem */
+        $filesystem = $this->getContainer()->make('filesystem');
+        $formPath = rtrim($this->getContainer()->make('config')['paths']['form'], '/') . '/';
+
+        if (!$filesystem->isDirectory($formPath)) {
+            throw new \Exception(sprintf("Path %s doesn't exist", $formPath));
+        }
 
         foreach ($tables as $table) {
             $mapper->setTable($table);
             $html = $generator->setMapper($mapper)->generate();
 
-            $this->getContainer()->make('output')->writeln('<info>Generating for ' . $table->getName() . '</info>');
-            // TODO Write this html to file
+            $filePath = $formPath . $table->getName() . '.php';
+            $filesystem->put($filePath, $html);
         }
 
     }

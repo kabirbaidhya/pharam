@@ -2,15 +2,16 @@
 
 namespace Pharam\Generator\Element;
 
-class Date extends AbstractElement
+class Radio extends AbstractElement
 {
 
     public function getHtml()
     {
         $input = form_input('radio', $this);
-        $input.=" Yes";
-        $input.= form_input('radio', $this);
-        $input.="No";
+        $input .= " Yes";
+        $input .= form_input('radio', $this);
+        $input .= "No";
+
         return $input;
     }
 

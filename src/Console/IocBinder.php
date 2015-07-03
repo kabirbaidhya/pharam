@@ -7,6 +7,7 @@ use Pharam\Generator\Database;
 use Illuminate\Filesystem\Filesystem;
 use Symfony\Component\Console\Input\ArgvInput;
 use Symfony\Component\Console\Output\ConsoleOutput;
+use tidy as Tidy;
 use Doctrine\DBAL\Configuration as DbalConfiguration;
 use Doctrine\DBAL\DriverManager as DoctrineDriverManager;
 
@@ -47,13 +48,24 @@ class IocBinder
         });
 
         $this->container->singleton('mapper', function ($con) {
+
             return new Mapper();
         });
 
+        $this->container->singleton('tidy', function ($con) {
+
+            return new Tidy();
+        });
+
+
+
         $this->container->singleton('form-generator', function ($con) {
             $generatorClass = $this->container['config']['generators']['form'];
+            
+            $generator = new $generatorClass();
+            $generator->setContainer($con);
 
-            return new $generatorClass();
+            return $generator;
         });
     }
 

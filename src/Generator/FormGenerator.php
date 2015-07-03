@@ -15,7 +15,17 @@ class FormGenerator extends AbstractFormGenerator
             $html .= get_container($element);
         }
 
-        return $html;
+        return $this->formatHTML($html);
+    }
+
+    protected function formatHTML($html)
+    {
+        $config = $this->getContainer()['config']['tidy'];
+        $tidy = $this->getContainer()['tidy'];
+        $tidy->parseString($html, $config, 'utf8');
+        $tidy->cleanRepair();
+
+        return $tidy;
     }
 
 }

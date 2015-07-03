@@ -1,9 +1,11 @@
 <?php
 
 namespace Pharam\Generator;
+use Pharam\Console\Traits\ContainerAwareTrait;
 
 abstract class AbstractFormGenerator implements FormGeneratorInterface
 {
+    use ContainerAwareTrait;
 
     /**
      * @var Mapper

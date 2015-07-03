@@ -17,7 +17,10 @@
     "autoload": {
         "psr-4": {
             "Pharam\\": "src/"
-        }
+        },
+        "files": [
+            "src/Misc/helpers.php"
+        ]
     },
     "scripts": {
         "post-install-cmd": [

@@ -63,7 +63,7 @@ class Mapper
     {
         $attributes = [
             'name' => $column->getName(),
-            'id' => str_replace('_', '-', $column->getName()),
+            'id' => human_readable($column->getName()),
             'class' => null
         ];
 

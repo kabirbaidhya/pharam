@@ -8,6 +8,7 @@ use Doctrine\DBAL\Types\TextType;
 use Pharam\Generator\Element\Text;
 use Doctrine\DBAL\Types\StringType;
 use Pharam\Generator\Element\TextArea;
+use Pharam\Generator\Element\Select;
 use Pharam\Generator\Element\ElementInterface;
 
 class Mapper
@@ -32,10 +33,17 @@ class Mapper
         }
 
         $elements = [];
-        foreach ($this->table->getColumns() as $column) {
-            $elements[] = $this->mapColumn($column);
-        }
+        $fks = array();
+        $fk = $this->table->getForeignKeys();
+        if(!empty($fk)){
+            foreach($fk as $f) {
+                $fks = array_merge($fks, $f->getLocalColumns());
+            }
 
+        };
+        foreach ($this->table->getColumns() as $column) {
+            $elements[] = $this->mapColumn($column,$fks);
+        }
         return $elements;
     }
 
@@ -43,7 +51,7 @@ class Mapper
      * @param Column $column
      * @return ElementInterface
      */
-    protected function mapColumn(Column $column)
+    protected function mapColumn(Column $column , $fks)
     {
         $attributes = [
             'name' => $column->getName(),
@@ -51,11 +59,14 @@ class Mapper
             'class' => null
         ];
 
+        //dump($column);
         if ($column->getType() instanceof TextType) {
             $element = new TextArea($attributes);
         } elseif ($column->getType() instanceof StringType) {
             $attributes['length'] = $column->getLength();
             $element = new Text($attributes);
+        } else if(in_array($column->getName(),$fks)){
+            $element = new Select($attributes);
         } else {
             // TODO
             $element = new Text($attributes);

@@ -2,11 +2,12 @@
 
 namespace Pharam\Generator\Element;
 
-class TextArea extends AbstractElement
+
+class Select extends AbstractElement
 {
     public function getHtml()
     {
-        $input = form_textarea($this);
+          $input = form_select($this);
         return $input;
     }
 

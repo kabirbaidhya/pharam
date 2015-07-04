@@ -13,9 +13,12 @@ use Pharam\Generator\Element\Boolean;
 use Pharam\Generator\Element\Numeric;
 use Pharam\Generator\Element\TextArea;
 use Pharam\Generator\Element\Password;
-use Pharam\Generator\Element\DateTime;
 use Pharam\Generator\Element\ElementInterface;
 
+/**
+ * Class Mapper
+ * @package Pharam\Generator
+ */
 class Mapper
 {
 
@@ -98,7 +101,7 @@ class Mapper
             $element = new Date($attributes);
         } elseif ($this->helper->isSelect($column, $fks)) {
             $element = new Select($attributes);
-        } elseif ($this->helper->isText($column)) {
+        } elseif ($this->helper->isTextArea($column)) {
             $element = new TextArea($attributes);
         } elseif ($this->helper->isString($column)) {
             $attributes['maxlength'] = $column->getLength();

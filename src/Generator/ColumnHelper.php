@@ -25,7 +25,7 @@ class ColumnHelper
      * @param Column $column
      * @return bool
      */
-    public function isText(Column $column)
+    public function isTextArea(Column $column)
     {
         return ($column->getType() instanceof TextType);
     }

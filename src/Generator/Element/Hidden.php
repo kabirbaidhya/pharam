@@ -1,19 +1,16 @@
 <?php
 
 namespace Pharam\Generator\Element;
-/**
- * Class Email
- * @package Pharam\Generator\Element
- */
+
 class Email extends AbstractElement
 {
     /**
-     * Function to generate HTML tag for email field
+     *
      * @return string Return HTML string output for email tag
      */
     public function getHtml()
     {
-        $input = form_input('email', $this);
+        $input = form_input('hidden', $this);
         return $input;
     }
 

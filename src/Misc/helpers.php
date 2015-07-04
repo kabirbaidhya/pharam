@@ -84,11 +84,12 @@ if (!function_exists('form_select')) {
 
 if (!function_exists('get_submit')) {
 
-    function get_submit()
+    function get_submit($hiddenField)
     {
 
-        $footer = '<div class="group">
-            <input type="submit" name="submit" id="submit" value="Submit"  />
+        $footer = '<div class="group">';
+        $footer.=$hiddenField;
+        $footer.=' <input type="submit" name="submit" id="submit" value="Submit"  />
         </div>';
 
         return $footer;

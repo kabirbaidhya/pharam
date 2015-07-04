@@ -7,8 +7,10 @@ use Doctrine\DBAL\Schema\Column;
 use Doctrine\DBAL\Types\BooleanType;
 use Doctrine\DBAL\Types\TextType;
 use Pharam\Generator\Element\Date;
+use Pharam\Generator\Element\DateTime;
 use Pharam\Generator\Element\Email;
 use Pharam\Generator\Element\Numeric;
+use Pharam\Generator\Element\Password;
 use Pharam\Generator\Element\Text;
 use Doctrine\DBAL\Types\StringType;
 use Pharam\Generator\Element\TextArea;
@@ -18,6 +20,7 @@ use Pharam\Generator\Element\ElementInterface;
 
 class Mapper
 {
+
     /**
      * @var ColumnHelper
      */
@@ -88,11 +91,11 @@ class Mapper
         } elseif ($this->helper->isDate($column)) {
             $element = new Date($attributes);
         } elseif ($this->helper->isDateTime($column)) {
-            // TODO DateTime
+            $element = new DateTime($attributes);
         } elseif ($this->helper->isEmail($column)) {
             $element = new Email($attributes);
         } elseif ($this->helper->isPassword($column)) {
-            // TODO Password
+            $element = new Password($attributes);
         } elseif ($this->helper->isSelect($column, $fks)) {
             $element = new Select($attributes);
         } elseif ($this->helper->isNumeric($column)) {

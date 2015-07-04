@@ -20,12 +20,14 @@ if (!function_exists('form_input')) {
         $inputElement = '<input type="' . $input . "\"";
         $required = $element->isRequired() ? "required" : null;
         foreach ($element->getAttributes() as $key => $val) {
-            if ($val == '')
+            if ($val == '') {
                 continue;
-            $inputElement.=" " . $key . "=\"" . $val . "\"";
+            }
+            $inputElement .= " " . $key . "=\"" . $val . "\"";
         }
-        $inputElement.=" " . $required;
-        $inputElement.=">";
+        $inputElement .= " " . $required;
+        $inputElement .= ">";
+
         return $inputElement;
     }
 
@@ -38,12 +40,14 @@ if (!function_exists('form_textarea')) {
         $inputElement = '<textarea';
         $required = $element->isRequired() ? "required" : null;
         foreach ($element->getAttributes() as $key => $val) {
-            if ($val == '')
+            if ($val == '') {
                 continue;
-            $inputElement.=" " . $key . "=\"" . $val . "\" ";
+            }
+            $inputElement .= " " . $key . "=\"" . $val . "\" ";
         }
-        $inputElement.=$required;
-        $inputElement.="></textarea>";
+        $inputElement .= $required;
+        $inputElement .= "></textarea>";
+
         return $inputElement;
     }
 
@@ -56,27 +60,29 @@ if (!function_exists('form_select')) {
         $inputElement = '<select';
         $required = $element->isRequired() ? "required" : null;
         foreach ($element->getAttributes() as $key => $val) {
-            if ($val == '')
+            if ($val == '') {
                 continue;
-            $inputElement.=" " . $key . "=\"" . $val . "\" ";
+            }
+            $inputElement .= " " . $key . "=\"" . $val . "\" ";
         }
-        $inputElement.=$required;
-        $inputElement.=">";
-        $inputElement.="<?php "
-                . "//Here comes to fetch the database data"
-                . "foreach(\$" . $element->getAttributes()['name'] . " as \$key=>\$val){"
-                . "?>"
-                . " <option values=\"<?php echo \$key;?>\"><?php echo \$val;?>"
-                ." </option>"
-                . "<?php }?>";
-        $inputElement.="</select>";
+        $inputElement .= $required;
+        $inputElement .= ">";
+        $inputElement .= "<?php "
+            . "//Here comes to fetch the database data"
+            . "foreach(\$" . $element->getAttributes()['name'] . " as \$key=>\$val){"
+            . "?>"
+            . " <option values=\"<?php echo \$key;?>\"><?php echo \$val;?>"
+            . " </option>"
+            . "<?php }?>";
+        $inputElement .= "</select>";
+
         return $inputElement;
     }
 
-    }
+}
 
 
-    if (!function_exists('get_submit')) {
+if (!function_exists('get_submit')) {
 
     function get_submit()
     {
@@ -123,15 +129,13 @@ if (!function_exists('get_header')) {
 
 if (!function_exists('get_container')) {
 
-    function get_container($element)
+    function get_container(\Pharam\Generator\Element\ElementInterface $element)
     {
-
-        $label = $element->isRequired() ? "*" : null;
-        $containerOutput = '<div class="group">
-            <label>' . $element->getLabel() . $label . '</label>
-            <div class="controls">';
-        $containerOutput.=$element->getHtml();
-        $containerOutput .=' </div>
+        $containerOutput = '<div class="group">'
+            . $element->getLabel()->getHtml()
+            . '<div class="controls">';
+        $containerOutput .= $element->getHtml();
+        $containerOutput .= ' </div>
         </div>';
 
         return $containerOutput;

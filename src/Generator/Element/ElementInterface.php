@@ -19,11 +19,24 @@ interface ElementInterface
 
     public function getAttribute($key);
 
+    /**
+     * @return Label
+     */
     public function getLabel();
 
-    public function setLabel($label);
+    /**
+     * @return string
+     */
+    public function getId();
+
+    /**
+     * @param Label $label
+     */
+    public function setLabel(Label $label);
 
     public function isRequired();
 
     public function setRequired($required);
+
+    public function setId($id);
 }

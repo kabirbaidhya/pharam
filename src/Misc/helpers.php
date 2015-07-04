@@ -15,10 +15,10 @@ if (!function_exists('human_readable')) {
 
 if (!function_exists('form_input')) {
 
-    function form_input($input, $element)
+    function form_input($type, $element)
     {
-        $inputElement = '<input type="' . $input . "\"";
-        $required = $element->isRequired() ? "required" : null;
+        $inputElement = '<input type="' . $type . "\"";
+        $required = ($element->isRequired() && $type !== 'hidden') ? "required" : null;
         foreach ($element->getAttributes() as $key => $val) {
             if ($val == '') {
                 continue;
@@ -69,11 +69,11 @@ if (!function_exists('form_select')) {
         $inputElement .= ">";
         $inputElement .= "<?php "
             . "\n//Fetch database date here \n"
-                . "foreach(\$" . $element->getAttributes()['name'] . " as \$key=>\$val){\n"
-                . "?>\n"
-                . " <option values=\"<?php echo \$key;?>\"><?php echo \$val;?>"
+            . "foreach(\$" . $element->getAttributes()['name'] . " as \$key=>\$val){\n"
+            . "?>\n"
+            . " <option values=\"<?php echo \$key;?>\"><?php echo \$val;?>"
             . " </option>\n"
-                . "<?php }?>";
+            . "<?php }?>";
         $inputElement .= "</select>";
 
         return $inputElement;
@@ -84,13 +84,9 @@ if (!function_exists('form_select')) {
 
 if (!function_exists('get_submit')) {
 
-    function get_submit($hiddenField)
+    function get_submit()
     {
-
-        $footer = '<div class="group">';
-        $footer.=$hiddenField;
-        $footer.=' <input type="submit" name="submit" id="submit" value="Submit"  />
-        </div>';
+        $footer = ' <input type="submit" name="submit" id="submit" value="Submit"  />';
 
         return $footer;
     }
@@ -102,8 +98,8 @@ if (!function_exists('get_footer')) {
     function get_footer()
     {
 
-        $footer = '</body>
-</html>';
+        $footer = ' </body >
+</html > ';
 
         return $footer;
     }
@@ -115,13 +111,13 @@ if (!function_exists('get_header')) {
     function get_header()
     {
 
-        $footer = '<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>PHARAM</title>
-</head>
-<body>';
+        $footer = ' < !DOCTYPE html >
+<html >
+<head >
+<meta charset = "UTF-8" >
+<title > PHARAM</title >
+</head >
+<body > ';
 
         return $footer;
     }
@@ -132,12 +128,12 @@ if (!function_exists('get_container')) {
 
     function get_container(\Pharam\Generator\Element\ElementInterface $element)
     {
-        $containerOutput = '<div class="group">'
+        $containerOutput = ' < div class="group" > '
             . $element->getLabel()->getHtml()
-            . '<div class="controls">';
+            . '<div class="controls" > ';
         $containerOutput .= $element->getHtml();
-        $containerOutput .= ' </div>
-        </div>';
+        $containerOutput .= ' </div >
+        </div > ';
 
         return $containerOutput;
     }

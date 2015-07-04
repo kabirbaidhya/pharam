@@ -2,6 +2,8 @@
 
 namespace Pharam\Generator;
 
+use Pharam\Generator\Element\Wrapper;
+
 /**
  * Class FormGenerator
  * Default Form Generator
@@ -20,16 +22,19 @@ class FormGenerator extends AbstractFormGenerator
     {
         $html = get_header();
         $html .= "<form>";
-        $hiddenField = '';
+        $hiddenFields = '';
 
         foreach ($this->getElements() as $element) {
             if (!($element instanceof Element\Hidden)) {
-                $html .= get_container($element);
+                $wrapper = new Wrapper('div', [$element->getLabel(), $element]);
+                $wrapper->setAttributes(['class' => 'form-group']);
+                $html .= $wrapper->getHtml();
             } else {
-                $hiddenField .= $element->getHtml();
+                $hiddenFields .= $element->getHtml() . "\n";
             }
         }
         $html .= get_submit($hiddenField);
+        $html .= $hiddenFields;
         $html .= "</form>";
         $html .= get_footer();
 

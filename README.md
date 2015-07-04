@@ -14,7 +14,7 @@ Pharam supports large number of databases: MySQL, Oracle, SQLite, PostgreSQL and
 
 1) Download the phar archive:
 
-    wget https://raw.githubusercontent.com/kabirbaidhya/pharam/release/pharam.phar
+    wget https://github.com/kabirbaidhya/pharam/raw/master/release/pharam.phar
     
 2) Create a config file using the following command and fill in the required credentials :
 

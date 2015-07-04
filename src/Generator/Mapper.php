@@ -15,6 +15,10 @@ use Pharam\Generator\Element\Password;
 use Pharam\Generator\Element\DateTime;
 use Pharam\Generator\Element\ElementInterface;
 
+/**
+ * Class Mapper
+ * @package Pharam\Generator
+ */
 class Mapper
 {
 
@@ -45,6 +49,7 @@ class Mapper
     }
 
     /**
+     * Get all DB table columns with its details
      * @return array
      * @throws \Exception
      */
@@ -70,6 +75,7 @@ class Mapper
     }
 
     /**
+     * Function to map DB columns with Form Element class.
      * @param Column $column
      * @return ElementInterface
      */

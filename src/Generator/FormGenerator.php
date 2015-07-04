@@ -3,11 +3,16 @@
 namespace Pharam\Generator;
 
 /**
+ * Class FormGenerator
  * Default Form Generator
+ * @package Pharam\Generator
  */
 class FormGenerator extends AbstractFormGenerator
 {
-
+    /**
+     * Generates final HTML forms elements.
+     * @return string
+     */
     public function generate()
     {
         $html = get_header();

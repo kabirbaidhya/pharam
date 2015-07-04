@@ -5,6 +5,10 @@ namespace Pharam\Generator;
 use Doctrine\DBAL\Connection;
 use Doctrine\DBAL\Schema\Table;
 
+/**
+ * Class Database
+ * @package Pharam\Generator
+ */
 class Database
 {
     /**
@@ -13,6 +17,7 @@ class Database
     private $connection;
 
     /**
+     * Initailize connection.
      * @param Connection $connection
      */
     public function __construct(Connection $connection)
@@ -21,6 +26,7 @@ class Database
     }
 
     /**
+     * Get Connection object
      * @return Connection
      */
     public function getConnection()
@@ -29,6 +35,7 @@ class Database
     }
 
     /**
+     * Sets Connection object
      * @param Connection $connection
      */
     public function setConnection(Connection $connection)
@@ -37,8 +44,9 @@ class Database
     }
 
     /**
+     * Gets all details related to a particular DB table
      * @param $tableName
-     * @return Table
+     * @return obj Table
      * @throws \Exception
      */
     public function getTable($tableName)
@@ -54,6 +62,10 @@ class Database
         return $table;
     }
 
+    /**
+     * Get details from all the table present in a DB Table.
+     * @return \Doctrine\DBAL\Schema\Table[]
+     */
     public function getAllTables()
     {
         $tables = $this->getConnection()->getSchemaManager()->listTables();
@@ -61,6 +73,12 @@ class Database
         return $tables;
     }
 
+    /**
+     * Gets table details from specified table name.
+     * @param array $tableNames
+     * @return array
+     * @throws \Exception
+     */
     public function getTables(array $tableNames)
     {
         $tables = [];

@@ -1,7 +1,10 @@
 <?php
 
 namespace Pharam\Generator\Element;
-
+/**
+ * Class Label
+ * @package Pharam\Generator\Element
+ */
 class Label
 {
     /**
@@ -24,6 +27,7 @@ class Label
     }
 
     /**
+     * Function to generate HTML element for required field
      * @return string
      */
     public function getHtml()
@@ -34,6 +38,7 @@ class Label
     }
 
     /**
+     *
      * @return string
      */
     public function getText()

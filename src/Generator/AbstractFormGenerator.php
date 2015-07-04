@@ -3,6 +3,10 @@
 namespace Pharam\Generator;
 use Pharam\Console\Traits\ContainerAwareTrait;
 
+/**
+ * Class AbstractFormGenerator
+ * @package Pharam\Generator
+ */
 abstract class AbstractFormGenerator implements FormGeneratorInterface
 {
     use ContainerAwareTrait;
@@ -13,6 +17,7 @@ abstract class AbstractFormGenerator implements FormGeneratorInterface
     protected $mapper;
 
     /**
+     * Sets Mapper object
      * @param Mapper $mapper
      * @return $this
      */
@@ -24,6 +29,7 @@ abstract class AbstractFormGenerator implements FormGeneratorInterface
     }
 
     /**
+     * Gets Mapper object
      * @return Mapper
      * @throws \Exception
      */
@@ -36,6 +42,11 @@ abstract class AbstractFormGenerator implements FormGeneratorInterface
         return $this->mapper;
     }
 
+    /**
+     * Calls mappers is get elements function.
+     * @return array
+     * @throws \Exception
+     */
     public function getElements()
     {
         return $this->getMapper()->getElements();

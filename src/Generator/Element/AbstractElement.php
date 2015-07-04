@@ -2,6 +2,10 @@
 
 namespace Pharam\Generator\Element;
 
+/**
+ * Class AbstractElement
+ * @package Pharam\Generator\Element
+ */
 abstract class AbstractElement implements ElementInterface
 {
     /**
@@ -20,7 +24,7 @@ abstract class AbstractElement implements ElementInterface
     protected $attributes;
 
     /**
-     * @param array $attributes
+     * @param array $attribute
      */
     public function __construct(array $attributes)
     {
@@ -29,6 +33,7 @@ abstract class AbstractElement implements ElementInterface
     }
 
     /**
+     * Get name property from attributes array
      * @return string
      */
     public function getName()
@@ -37,6 +42,7 @@ abstract class AbstractElement implements ElementInterface
     }
 
     /**
+     * Set Name property to attributes array
      * @param string $name
      */
     public function setName($name)
@@ -45,6 +51,7 @@ abstract class AbstractElement implements ElementInterface
     }
 
     /**
+     * Get all attributes from attribute array
      * @return array
      */
     public function getAttributes()
@@ -53,6 +60,7 @@ abstract class AbstractElement implements ElementInterface
     }
 
     /**
+     * Set attributes.
      * @param array $attributes
      */
     public function setAttributes(array $attributes)
@@ -61,6 +69,7 @@ abstract class AbstractElement implements ElementInterface
     }
 
     /**
+     * Set elements to attributes array
      * @param string $key
      * @param string $value
      */
@@ -79,6 +88,7 @@ abstract class AbstractElement implements ElementInterface
     }
 
     /**
+     * Get Label
      * @return Label
      */
     public function getLabel()
@@ -87,6 +97,7 @@ abstract class AbstractElement implements ElementInterface
     }
 
     /**
+     * Set Label
      * @param Label $label
      */
     public function setLabel(Label $label)
@@ -95,6 +106,7 @@ abstract class AbstractElement implements ElementInterface
     }
 
     /**
+     * Get is required field to an object.
      * @return bool
      */
     public function isRequired()
@@ -103,6 +115,7 @@ abstract class AbstractElement implements ElementInterface
     }
 
     /**
+     * Set is required field to an object.
      * @param bool $required
      */
     public function setRequired($required)
@@ -111,6 +124,7 @@ abstract class AbstractElement implements ElementInterface
     }
 
     /**
+     * Get atttribute ID
      * @return string
      */
     public function getId()
@@ -119,6 +133,7 @@ abstract class AbstractElement implements ElementInterface
     }
 
     /**
+     * Set attribute Id.
      * @param string $id
      */
     public function setId($id)

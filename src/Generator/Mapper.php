@@ -4,6 +4,7 @@ namespace Pharam\Generator;
 
 use Doctrine\DBAL\Schema\Table;
 use Doctrine\DBAL\Schema\Column;
+use Pharam\Generator\Element\Hidden;
 use Pharam\Generator\Element\Text;
 use Pharam\Generator\Element\Date;
 use Pharam\Generator\Element\Email;
@@ -12,9 +13,12 @@ use Pharam\Generator\Element\Boolean;
 use Pharam\Generator\Element\Numeric;
 use Pharam\Generator\Element\TextArea;
 use Pharam\Generator\Element\Password;
-use Pharam\Generator\Element\DateTime;
 use Pharam\Generator\Element\ElementInterface;
 
+/**
+ * Class Mapper
+ * @package Pharam\Generator
+ */
 class Mapper
 {
 
@@ -45,6 +49,8 @@ class Mapper
     }
 
     /**
+     * Convert all the table columns into form elements
+     *
      * @return array
      * @throws \Exception
      */
@@ -70,6 +76,8 @@ class Mapper
     }
 
     /**
+     * Maps an individual column in to a Form element
+     *
      * @param Column $column
      * @return ElementInterface
      */
@@ -81,24 +89,23 @@ class Mapper
             'class' => null
         ];
 
-        //dump($column);
-        if ($this->helper->isText($column)) {
-            $element = new TextArea($attributes);
-        } elseif ($this->helper->isString($column)) {
-            $attributes['maxlength'] = $column->getLength();
-            $element = new Text($attributes);
+        if ($this->helper->isEmail($column)) {
+            $element = new Email($attributes);
+        } elseif ($this->helper->isPassword($column)) {
+            $element = new Password($attributes);
+        } elseif ($this->helper->isHidden($column)) {
+            $element = new Hidden($attributes);
         } elseif ($this->helper->isBoolean($column)) {
             $element = new Boolean($attributes);
         } elseif ($this->helper->isDate($column)) {
             $element = new Date($attributes);
-        } elseif ($this->helper->isDateTime($column)) {
-            $element = new DateTime($attributes);
-        } elseif ($this->helper->isEmail($column)) {
-            $element = new Email($attributes);
-        } elseif ($this->helper->isPassword($column)) {
-            $element = new Password($attributes);
         } elseif ($this->helper->isSelect($column, $fks)) {
             $element = new Select($attributes);
+        } elseif ($this->helper->isTextArea($column)) {
+            $element = new TextArea($attributes);
+        } elseif ($this->helper->isString($column)) {
+            $attributes['maxlength'] = $column->getLength();
+            $element = new Text($attributes);
         } elseif ($this->helper->isNumeric($column)) {
             $element = new Numeric($attributes);
         } else {

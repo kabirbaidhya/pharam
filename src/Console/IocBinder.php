@@ -2,6 +2,7 @@
 
 namespace Pharam\Console;
 
+use Pharam\Misc\Formatter;
 use Pharam\Generator\Mapper;
 use Pharam\Generator\Database;
 use Pharam\Generator\ColumnHelper;
@@ -65,6 +66,10 @@ class IocBinder
 
         $this->container->singleton('mapper', function ($container) {
             return new Mapper($container['column-helper']);
+        });
+
+        $this->container->singleton('formatter', function () {
+            return new Formatter();
         });
 
         $this->container->singleton('form-generator', function ($container) {

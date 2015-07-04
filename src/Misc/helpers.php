@@ -68,12 +68,12 @@ if (!function_exists('form_select')) {
         $inputElement .= $required;
         $inputElement .= ">";
         $inputElement .= "<?php "
-            . "//Here comes to fetch the database data"
-            . "foreach(\$" . $element->getAttributes()['name'] . " as \$key=>\$val){"
-            . "?>"
-            . " <option values=\"<?php echo \$key;?>\"><?php echo \$val;?>"
-            . " </option>"
-            . "<?php }?>";
+            . "\n//Fetch database date here \n"
+                . "foreach(\$" . $element->getAttributes()['name'] . " as \$key=>\$val){\n"
+                . "?>\n"
+                . " <option values=\"<?php echo \$key;?>\"><?php echo \$val;?>"
+            . " </option>\n"
+                . "<?php }?>";
         $inputElement .= "</select>";
 
         return $inputElement;

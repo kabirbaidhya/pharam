@@ -2,11 +2,14 @@
 
 namespace Pharam\Generator\Element;
 
-
+/**
+ * Class Boolean
+ * @package Pharam\Generator\Element
+ */
 class Boolean extends AbstractElement
 {
- /**
-     *
+     /**
+     * Function to generate HTML tags for radio button.
      * @return string Return HTML string output for radio tag
      */
     public function getHtml()

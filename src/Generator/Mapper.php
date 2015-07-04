@@ -60,6 +60,7 @@ class Mapper
             throw new \Exception('Table not set');
         }
 
+        $pkColumns = $this->table->getPrimaryKey()->getColumns();
         $elements = [];
         $fks = [];
         $fk = $this->table->getForeignKeys();
@@ -70,7 +71,9 @@ class Mapper
         };
         foreach ($this->table->getColumns() as $column) {
 
-            if ($this->helper->isExcluded($column)) {
+            $isPrimaryKey = in_array($column->getName(), $pkColumns);
+
+            if ($this->helper->isExcluded($column) || $isPrimaryKey) {
                 continue;
             }
 

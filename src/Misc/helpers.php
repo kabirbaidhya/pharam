@@ -68,12 +68,12 @@ if (!function_exists('form_select')) {
         $inputElement .= $required;
         $inputElement .= ">";
         $inputElement .= "<?php "
-            . "\n//Fetch database date here \n"
+            . "\n// Fetch database data here \n"
             . "foreach(\$" . $element->getAttributes()['name'] . " as \$key=>\$val){\n"
             . "?>\n"
             . " <option values=\"<?php echo \$key;?>\"><?php echo \$val;?>"
             . " </option>\n"
-            . "<?php }?>";
+            . "<?php } ?>";
         $inputElement .= "</select>";
 
         return $inputElement;
@@ -89,53 +89,6 @@ if (!function_exists('get_submit')) {
         $footer = ' <input type="submit" name="submit" id="submit" value="Submit"  />';
 
         return $footer;
-    }
-
-}
-
-if (!function_exists('get_footer')) {
-
-    function get_footer()
-    {
-
-        $footer = ' </body >
-</html > ';
-
-        return $footer;
-    }
-
-}
-
-if (!function_exists('get_header')) {
-
-    function get_header()
-    {
-
-        $footer = ' < !DOCTYPE html >
-<html >
-<head >
-<meta charset = "UTF-8" >
-<title > PHARAM</title >
-</head >
-<body > ';
-
-        return $footer;
-    }
-
-}
-
-if (!function_exists('get_container')) {
-
-    function get_container(\Pharam\Generator\Element\ElementInterface $element)
-    {
-        $containerOutput = ' < div class="group" > '
-            . $element->getLabel()->getHtml()
-            . '<div class="controls" > ';
-        $containerOutput .= $element->getHtml();
-        $containerOutput .= ' </div >
-        </div > ';
-
-        return $containerOutput;
     }
 
 }

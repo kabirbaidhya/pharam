@@ -8,3 +8,5 @@ database:
     password: PASSWORD
     host: HOST
     driver: DRIVER
+form:
+    use_bootstrap: true

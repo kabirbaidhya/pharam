@@ -2,7 +2,7 @@
 
 namespace Pharam\Generator\Element;
 /**
- * Class Label
+ * Class Label to generate Label html tag
  * @package Pharam\Generator\Element
  */
 class Label

@@ -3,7 +3,7 @@
 namespace Pharam\Generator\Element;
 
 /**
- * Class Date
+ * Class Date to generate Date field html Tag
  * @package Pharam\Generator\Element
  */
 class Date extends AbstractElement

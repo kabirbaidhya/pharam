@@ -2,7 +2,10 @@
 
 namespace Pharam\Generator\Element;
 
-
+/**
+ * Class Text to generate text type html tag
+ * @package Pharam\Generator\Element
+ */
 class Text extends AbstractElement
 {
  /**

@@ -2,7 +2,10 @@
 
 namespace Pharam\Generator\Element;
 
-
+/**
+ * Class Numeric to generate number type html tag
+ * @package Pharam\Generator\Element
+ */
 class Numeric extends AbstractElement
 {
     /**

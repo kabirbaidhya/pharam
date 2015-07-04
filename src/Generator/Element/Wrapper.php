@@ -1,7 +1,10 @@
 <?php
 
 namespace Pharam\Generator\Element;
-
+/**
+ * Class Wrapper Wrap html tag within the element
+ * @package Pharam\Generator\Element
+ */
 class Wrapper
 {
     /**

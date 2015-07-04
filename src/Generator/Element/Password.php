@@ -2,6 +2,10 @@
 
 namespace Pharam\Generator\Element;
 
+/**
+ * Class Password to generate password type html tag
+ * @package Pharam\Generator\Element
+ */
 class Password extends AbstractElement
 {
     /**

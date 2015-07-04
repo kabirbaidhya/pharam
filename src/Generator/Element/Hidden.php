@@ -1,7 +1,10 @@
 <?php
 
 namespace Pharam\Generator\Element;
-
+/**
+ * Class Label to generate Hidden html tag
+ * @package Pharam\Generator\Element
+ */
 class Hidden extends AbstractElement
 {
     /**

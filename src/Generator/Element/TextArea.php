@@ -2,6 +2,10 @@
 
 namespace Pharam\Generator\Element;
 
+/**
+ * Class TextArea to generate textarea html tag
+ * @package Pharam\Generator\Element
+ */
 class TextArea extends AbstractElement
 {
 

@@ -2,7 +2,7 @@
 
 namespace Pharam\Generator\Element;
 /**
- * Class Email
+ * Class Email to generate Email field html Tag
  * @package Pharam\Generator\Element
  */
 class Email extends AbstractElement

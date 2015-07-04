@@ -3,7 +3,7 @@
 namespace Pharam\Generator\Element;
 
 /**
- * Class Boolean
+ * Class Boolean to generate Yes No Radio html Tag
  * @package Pharam\Generator\Element
  */
 class Boolean extends AbstractElement

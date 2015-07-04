@@ -2,7 +2,10 @@
 
 namespace Pharam\Generator\Element;
 
-
+/**
+ * Class Select to generate select html tag
+ * @package Pharam\Generator\Element
+ */
 class Select extends AbstractElement
 {
 

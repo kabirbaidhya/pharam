@@ -10,10 +10,11 @@ class FormGenerator extends AbstractFormGenerator
 
     public function generate()
     {
-        $html = '';
+        $html = get_header();
         foreach ($this->getElements() as $element) {
             $html .= get_container($element);
         }
+        $html.=get_submit();
         $html.=get_footer();
 
         return $html;

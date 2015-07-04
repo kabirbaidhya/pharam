@@ -76,14 +76,45 @@ if (!function_exists('form_select')) {
     }
 
 
-if (!function_exists('get_footer')) {
+    if (!function_exists('get_submit')) {
 
-    function get_footer()
+    function get_submit()
     {
 
         $footer = '<div class="group">
             <input type="submit" name="submit" id="submit" value="Submit"  />
         </div>';
+
+        return $footer;
+    }
+
+}
+
+if (!function_exists('get_footer')) {
+
+    function get_footer()
+    {
+
+        $footer = '</body>
+</html>';
+
+        return $footer;
+    }
+
+}
+
+if (!function_exists('get_header')) {
+
+    function get_header()
+    {
+
+        $footer = '<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>PHARAM</title>
+</head>
+<body>';
 
         return $footer;
     }

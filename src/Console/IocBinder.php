@@ -2,12 +2,12 @@
 
 namespace Pharam\Console;
 
-use Pharam\Generator\BootstrapTemplate;
 use Pharam\Misc\Formatter;
 use Pharam\Generator\Mapper;
 use Pharam\Generator\Database;
 use Pharam\Generator\ColumnHelper;
 use Illuminate\Filesystem\Filesystem;
+use Pharam\Generator\BootstrapTemplate;
 use Symfony\Component\Console\Input\ArgvInput;
 use Symfony\Component\Console\Output\ConsoleOutput;
 use Doctrine\DBAL\Configuration as DbalConfiguration;

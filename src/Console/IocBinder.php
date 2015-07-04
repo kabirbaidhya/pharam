@@ -2,18 +2,18 @@
 
 namespace Pharam\Console;
 
-use Pharam\Generator\ColumnHelper;
 use Pharam\Generator\Mapper;
 use Pharam\Generator\Database;
+use Pharam\Generator\ColumnHelper;
 use Illuminate\Filesystem\Filesystem;
 use Symfony\Component\Console\Input\ArgvInput;
 use Symfony\Component\Console\Output\ConsoleOutput;
-use tidy as Tidy;
 use Doctrine\DBAL\Configuration as DbalConfiguration;
 use Doctrine\DBAL\DriverManager as DoctrineDriverManager;
 
 class IocBinder
 {
+
     public function __construct(ServiceContainer $container)
     {
         $this->container = $container;
@@ -49,13 +49,7 @@ class IocBinder
         });
 
         $this->container->singleton('mapper', function ($con) {
-
             return new Mapper();
-        });
-
-        $this->container->singleton('tidy', function ($con) {
-
-            return new Tidy();
         });
 
         $this->container->singleton('column-helper', function ($con) {

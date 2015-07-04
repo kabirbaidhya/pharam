@@ -13,10 +13,5 @@ return [
         'password' => null,
         'host' => null,
         'driver' => null,
-    ],
-    'tidy' => [
-        'indent' => true,
-        'output-xhtml' => true,
-        'wrap' => 200
     ]
 ];

@@ -21,10 +21,23 @@ class FormGenerator extends AbstractFormGenerator
     public function generate()
     {
         $html = $this->getPageHtml();
-
-        $html = str_replace('${form}', $this->getFormHtml(), $html);;
+        $enableBootstrapCss = $this->getContainer()['config']['form']['use_bootstrap'];
+        if ($enableBootstrapCss) {
+            $html = str_replace('${csslink}', $this->generateHeaderLink(), $html);
+        }
+        $html = str_replace('${form}', $this->getFormHtml(), $html);
 
         return $this->formatHtml($html);
+    }
+
+    /*
+     * Create the bootstrapcss
+     * @return string
+     */
+
+    protected function generateHeaderLink()
+    {
+        return "<link rel=\"stylesheet\" href=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css\">";
     }
 
     /**

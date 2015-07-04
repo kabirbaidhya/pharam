@@ -21,21 +21,26 @@ class FormGenerator extends AbstractFormGenerator
     public function generate()
     {
         $html = get_header();
-        $html .= "<form>";
-        $hiddenFields = '';
 
+        $form = new Wrapper('form');
+        $html .= $form->openTag();
+
+        $hiddenFields = '';
         foreach ($this->getElements() as $element) {
             if (!($element instanceof Element\Hidden)) {
                 $wrapper = new Wrapper('div', [$element->getLabel(), $element]);
-                $wrapper->setAttributes(['class' => 'form-group']);
-                $html .= $wrapper->getHtml();
+                $html .= $wrapper->setAttributes([
+                    'class' => 'form-group'
+                ])->getHtml();
+
             } else {
                 $hiddenFields .= $element->getHtml() . "\n";
             }
         }
-        $html .= get_submit($hiddenField);
+
+        $html .= get_submit();
         $html .= $hiddenFields;
-        $html .= "</form>";
+        $html .= $form->closeTag();
         $html .= get_footer();
 
         return $this->formatHtml($html);

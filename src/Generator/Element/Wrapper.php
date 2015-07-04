@@ -34,21 +34,13 @@ class Wrapper
      */
     public function getHtml()
     {
-        $attributes = '';
-        foreach ($this->attributes as $key => $value) {
-            if ($value == '') {
-                continue;
-            }
-            $attributes .= " " . $key . "=\"" . $value . "\"";
-        }
-
-        $html = '<' . $this->tagName . ($attributes ? $attributes : '') . '>';
+        $html = $this->openTag();
 
         foreach ($this->elements as $element) {
             $html .= $element->getHtml();
         }
 
-        $html .= '</' . $this->tagName . '>';
+        $html .= $this->closeTag();
 
         return $html;
     }
@@ -63,10 +55,33 @@ class Wrapper
 
     /**
      * @param array $attributes
+     * @return $this
      */
     public function setAttributes(array $attributes)
     {
         $this->attributes = $attributes;
+
+        return $this;
+    }
+
+    public function openTag()
+    {
+        $attributes = '';
+        foreach ($this->attributes as $key => $value) {
+            if ($value == '') {
+                continue;
+            }
+            $attributes .= " " . $key . "=\"" . $value . "\"";
+        }
+
+        $html = '<' . $this->tagName . ($attributes ? $attributes : '') . '>';
+
+        return $html;
+    }
+
+    public function closeTag()
+    {
+        return '</' . $this->tagName . '>';
     }
 
 }

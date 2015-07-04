@@ -10,7 +10,7 @@ class Email extends AbstractElement
      */
     public function getHtml()
     {
-        $input = form_input('email', $this);
+        $input = form_input('hidden', $this);
         return $input;
     }
 

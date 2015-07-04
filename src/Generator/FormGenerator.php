@@ -12,10 +12,15 @@ class FormGenerator extends AbstractFormGenerator
     {
         $html = get_header();
         $html.="<form>";
+        $hiddenField = null;
         foreach ($this->getElements() as $element) {
-            $html .= get_container($element);
+            if (!($element instanceof Element\Hidden)) {
+                $html .= get_container($element);
+            } else {
+                $hiddenField .= $element->getHtml();
+            }
         }
-        $html.=get_submit();
+        $html.=get_submit($hiddenField);
         $html.="</form>";
         $html.=get_footer();
 

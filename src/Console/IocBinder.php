@@ -14,11 +14,17 @@ use Doctrine\DBAL\DriverManager as DoctrineDriverManager;
 class IocBinder
 {
 
+    /**
+     * @param ServiceContainer $container
+     */
     public function __construct(ServiceContainer $container)
     {
         $this->container = $container;
     }
 
+    /**
+     * Initialize bindings when the application is initialized
+     */
     public function preBind()
     {
         $this->container->bind('filesystem', function () {
@@ -34,33 +40,38 @@ class IocBinder
         });
     }
 
+    /**
+     * Initialize bindings after the application is initialized and config is loaded
+     *
+     * @param array $configuration
+     */
     public function postBind(array $configuration)
     {
         $this->container->instance('config', $configuration);
 
-        $this->container->singleton('connection', function ($con) {
-            $connectionParams = $con['config']['database'];
+        $this->container->singleton('connection', function ($container) {
+            $connectionParams = $container['config']['database'];
 
             return DoctrineDriverManager::getConnection($connectionParams, new DbalConfiguration());
         });
 
-        $this->container->singleton('db', function ($con) {
-            return new Database($con['connection']);
+        $this->container->singleton('db', function ($container) {
+            return new Database($container['connection']);
         });
 
-        $this->container->singleton('mapper', function ($con) {
-            return new Mapper();
-        });
-
-        $this->container->singleton('column-helper', function ($con) {
+        $this->container->singleton('column-helper', function () {
             return new ColumnHelper();
         });
 
-        $this->container->singleton('form-generator', function ($con) {
-            $generatorClass = $this->container['config']['generators']['form'];
+        $this->container->singleton('mapper', function ($container) {
+            return new Mapper($container['column-helper']);
+        });
+
+        $this->container->singleton('form-generator', function ($container) {
+            $generatorClass = $container['config']['generators']['form'];
 
             $generator = new $generatorClass();
-            $generator->setContainer($con);
+            $generator->setContainer($container);
 
             return $generator;
         });

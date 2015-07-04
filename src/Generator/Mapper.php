@@ -4,18 +4,15 @@ namespace Pharam\Generator;
 
 use Doctrine\DBAL\Schema\Table;
 use Doctrine\DBAL\Schema\Column;
-use Doctrine\DBAL\Types\BooleanType;
-use Doctrine\DBAL\Types\TextType;
-use Pharam\Generator\Element\Date;
-use Pharam\Generator\Element\DateTime;
-use Pharam\Generator\Element\Email;
-use Pharam\Generator\Element\Numeric;
-use Pharam\Generator\Element\Password;
 use Pharam\Generator\Element\Text;
-use Doctrine\DBAL\Types\StringType;
-use Pharam\Generator\Element\TextArea;
+use Pharam\Generator\Element\Date;
+use Pharam\Generator\Element\Email;
 use Pharam\Generator\Element\Select;
 use Pharam\Generator\Element\Boolean;
+use Pharam\Generator\Element\Numeric;
+use Pharam\Generator\Element\TextArea;
+use Pharam\Generator\Element\Password;
+use Pharam\Generator\Element\DateTime;
 use Pharam\Generator\Element\ElementInterface;
 
 class Mapper
@@ -47,6 +44,10 @@ class Mapper
         $this->table = $table;
     }
 
+    /**
+     * @return array
+     * @throws \Exception
+     */
     public function getElements()
     {
         if (!($this->table instanceof Table)) {

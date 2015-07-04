@@ -69,6 +69,11 @@ class Mapper
             }
         };
         foreach ($this->table->getColumns() as $column) {
+
+            if ($this->helper->isExcluded($column)) {
+                continue;
+            }
+
             $elements[] = $this->mapColumn($column, $fks);
         }
 

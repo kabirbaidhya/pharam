@@ -20,6 +20,7 @@ class ColumnHelper
     const HASH_TAG_EMAIL = 'email';
     const HASH_TAG_PASSWORD = 'password';
     const HASH_TAG_HIDDEN = 'hidden';
+    const HASH_TAG_EXCLUDE = 'exclude';
 
     /**
      * @param Column $column
@@ -155,5 +156,16 @@ class ColumnHelper
             $column->getAutoincrement() ||
             $this->hasCommentTag($column, self::HASH_TAG_HIDDEN)
         );
+    }
+
+    /**
+     * Checks if the column should be generated in the form
+     *
+     * @param Column $column
+     * @return mixed
+     */
+    public function isExcluded(Column $column)
+    {
+        return $this->hasCommentTag($column, self::HASH_TAG_EXCLUDE);
     }
 }

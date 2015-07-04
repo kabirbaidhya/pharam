@@ -1,6 +1,7 @@
 <?php
 
 namespace Pharam\Generator;
+
 use Pharam\Console\Traits\ContainerAwareTrait;
 
 /**
@@ -15,6 +16,11 @@ abstract class AbstractFormGenerator implements FormGeneratorInterface
      * @var Mapper
      */
     protected $mapper;
+
+    /**
+     * @var FormTemplateInterface
+     */
+    protected $template;
 
     /**
      * Sets Mapper object
@@ -50,6 +56,22 @@ abstract class AbstractFormGenerator implements FormGeneratorInterface
     public function getElements()
     {
         return $this->getMapper()->getElements();
+    }
+
+    /**
+     * @param FormTemplateInterface $template
+     */
+    public function setTemplate(FormTemplateInterface $template)
+    {
+        $this->template = $template;
+    }
+
+    /**
+     * @return FormTemplateInterface
+     */
+    public function getTemplate()
+    {
+        return $this->template;
     }
 
 }

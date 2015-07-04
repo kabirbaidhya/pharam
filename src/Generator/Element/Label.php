@@ -1,6 +1,7 @@
 <?php
 
 namespace Pharam\Generator\Element;
+
 /**
  * Class Label
  * @package Pharam\Generator\Element
@@ -34,7 +35,8 @@ class Label
     {
         $requiredSpan = $this->getElement()->isRequired() ? "<span>*</span>" : '';
 
-        return sprintf('<label for="%s">%s %s</label>', $this->getElement()->getId(), $this->getText(), $requiredSpan);
+        return sprintf('<label for="%s" class="control-label">%s %s</label>', $this->getElement()->getId(),
+            $this->getText(), $requiredSpan);
     }
 
     /**
@@ -70,4 +72,5 @@ class Label
     {
         $this->element = $element;
     }
+
 }

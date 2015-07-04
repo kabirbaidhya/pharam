@@ -37,4 +37,14 @@ interface FormGeneratorInterface
      */
     public function setMapper(Mapper $mapper);
 
+    /**
+     * @param FormTemplateInterface $template
+     */
+    public function setTemplate(FormTemplateInterface $template);
+
+    /**
+     * @return FormTemplateInterface
+     */
+    public function getTemplate();
+
 }

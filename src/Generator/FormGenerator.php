@@ -47,16 +47,20 @@ class FormGenerator extends AbstractFormGenerator
      */
     protected function getFormHtml()
     {
-        $form = new Wrapper('form');
+        $template = $this->getTemplate();
+        $form = $template->getFormWrapper();
         $html = $form->openTag();
 
         $hiddenFields = '';
         foreach ($this->getElements() as $element) {
             if (!($element instanceof Element\Hidden)) {
-                $wrapper = new Wrapper('div', [$element->getLabel(), $element]);
-                $html .= $wrapper->setAttributes([
-                    'class' => 'form-group'
-                ])->getHtml();
+                $wrapper = $template->getInputWrapper();
+//                $element->getLabel()->setAttribute('class', $template->getLabelClass());
+                $element->setAttribute('class', $template->getInputClass());
+
+                $wrapper->setElements([$element->getLabel(), $element]);
+
+                $html .= $wrapper->getHtml();
 
             } else {
                 $hiddenFields .= $element->getHtml() . "\n";

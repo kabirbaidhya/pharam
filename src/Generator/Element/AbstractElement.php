@@ -24,7 +24,7 @@ abstract class AbstractElement implements ElementInterface
     protected $attributes;
 
     /**
-     * @param array $attribute
+     * @param array $attributes
      */
     public function __construct(array $attributes)
     {

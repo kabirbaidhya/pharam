@@ -22,6 +22,7 @@ class Wrapper
     /**
      * @param string $tagName
      * @param array $elements
+     * @param array $attributes
      */
     public function __construct($tagName, array $elements = [], array $attributes = [])
     {
@@ -83,6 +84,38 @@ class Wrapper
     public function closeTag()
     {
         return '</' . $this->tagName . '>';
+    }
+
+    /**
+     * @return array
+     */
+    public function getElements()
+    {
+        return $this->elements;
+    }
+
+    /**
+     * @param array $elements
+     */
+    public function setElements(array $elements)
+    {
+        $this->elements = $elements;
+    }
+
+    /**
+     * @return string
+     */
+    public function getTagName()
+    {
+        return $this->tagName;
+    }
+
+    /**
+     * @param string $tagName
+     */
+    public function setTagName($tagName)
+    {
+        $this->tagName = $tagName;
     }
 
 }

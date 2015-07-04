@@ -2,6 +2,7 @@
 
 namespace Pharam\Console;
 
+use Pharam\Generator\BootstrapTemplate;
 use Pharam\Misc\Formatter;
 use Pharam\Generator\Mapper;
 use Pharam\Generator\Database;
@@ -72,11 +73,16 @@ class IocBinder
             return new Formatter();
         });
 
+        $this->container->singleton('form-template', function () {
+            return new BootstrapTemplate();
+        });
+
         $this->container->singleton('form-generator', function ($container) {
             $generatorClass = $container['config']['generators']['form'];
 
             $generator = new $generatorClass();
             $generator->setContainer($container);
+            $generator->setTemplate($container['form-template']);
 
             return $generator;
         });

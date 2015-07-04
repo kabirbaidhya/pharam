@@ -5,8 +5,11 @@ namespace Pharam\Generator\Element;
 
 class Text extends AbstractElement
 {
- 
-     public function getHtml()
+ /**
+     *
+     * @return string Return HTML string output for text tag
+     */
+    public function getHtml()
     {
         $input = form_input('text', $this);
         return $input;

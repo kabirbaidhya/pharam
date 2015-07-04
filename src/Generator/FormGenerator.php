@@ -14,6 +14,7 @@ class FormGenerator extends AbstractFormGenerator
         foreach ($this->getElements() as $element) {
             $html .= get_container($element);
         }
+        $html.=get_footer();
 
         return $html;
     }

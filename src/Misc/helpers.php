@@ -61,12 +61,34 @@ if (!function_exists('form_select')) {
             $inputElement.=" " . $key . "=\"" . $val . "\" ";
         }
         $inputElement.=$required;
-        $inputElement.="></select>";
+        $inputElement.=">";
+        $inputElement.="<?php "
+                . "//Here comes to fetch the database data"
+                . "foreach(\$" . $element->getAttributes()['name'] . " as \$key=>\$val){"
+                . "?>"
+                . " <option values=\"<?php echo \$key;?>\"><?php echo \$val;?>"
+                ." </option>"
+                . "<?php }?>";
+        $inputElement.="</select>";
         return $inputElement;
     }
 
-}
+    }
 
+
+if (!function_exists('get_footer')) {
+
+    function get_footer()
+    {
+
+        $footer = '<div class="group">
+            <input type="submit" name="submit" id="submit" value="Submit"  />
+        </div>';
+
+        return $footer;
+    }
+
+}
 
 if (!function_exists('get_container')) {
 
@@ -80,6 +102,7 @@ if (!function_exists('get_container')) {
         $containerOutput.=$element->getHtml();
         $containerOutput .=' </div>
         </div>';
+
         return $containerOutput;
     }
 

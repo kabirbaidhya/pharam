@@ -13,5 +13,8 @@ return [
         'password' => null,
         'host' => null,
         'driver' => null,
+    ],
+    'form' => [
+        'use_bootstrap' => true
     ]
 ];

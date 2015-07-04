@@ -7,9 +7,7 @@ Pharam supports large number of databases: MySQL, Oracle, SQLite, PostgreSQL and
 ##Third Party Packages
 
 * [doctrine/dbal](https://github.com/doctrine/dbal) - For database abstraction
-
 * [illuminate/container](https://github.com/illuminate/container) - For Inversion of Control (IOC Container)
-
 * [symfony/console](https://github.com/symfony/console) - For CLI
 
 ##Installation
@@ -30,8 +28,11 @@ Pharam supports large number of databases: MySQL, Oracle, SQLite, PostgreSQL and
 
 ##About
 
-###Requirements:
+###Requirements
 Pharam requires **PHP 5.5.9** or above.
+
+###Architecture
+View the current Pharam architecture [here](https://raw.githubusercontent.com/kabirbaidhya/pharam/master/image/pharam.png)
 
 ###Submitting bugs and feature requests
 Contribute to this project. Bugs and feature request are tracked on [GitHub](https://github.com/kabirbaidhya/pharam/issues)

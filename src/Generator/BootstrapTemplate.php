@@ -14,7 +14,8 @@ class BootstrapTemplate implements FormTemplateInterface
     {
         $wrapper = new Wrapper('form');
         $wrapper->setAttributes([
-            'role' => 'form'
+            'role' => 'form',
+            'class' => 'form-horizontal'
         ]);
 
         return $wrapper;
@@ -24,6 +25,19 @@ class BootstrapTemplate implements FormTemplateInterface
      * @return Wrapper
      */
     public function getInputWrapper()
+    {
+        $wrapper = new Wrapper('div');
+        $wrapper->setAttributes([
+            'class' => 'col-sm-10'
+        ]);
+
+        return $wrapper;
+    }
+
+    /**
+     * @return Wrapper
+     */
+    public function getInputRowWrapper()
     {
         $wrapper = new Wrapper('div');
         $wrapper->setAttributes([
@@ -46,6 +60,22 @@ class BootstrapTemplate implements FormTemplateInterface
      */
     public function getLabelClass()
     {
-        return 'control-label';
+        return 'control-label col-sm-2';
+    }
+
+    /**
+     * @return string
+     */
+    public function getButtonClass()
+    {
+        return 'btn btn-default';
+    }
+
+    /**
+     * @return string
+     */
+    public function getSubmitButtonClass()
+    {
+        return 'btn btn-primary';
     }
 }

@@ -3,6 +3,7 @@
 namespace Pharam\Generator;
 
 use Illuminate\Filesystem\Filesystem;
+use Pharam\Generator\Element\Button;
 use Pharam\Generator\Element\Wrapper;
 
 /**
@@ -62,25 +63,42 @@ class FormGenerator extends AbstractFormGenerator
     {
         $template = $this->getTemplate();
         $form = $template->getFormWrapper();
-        $html = $form->openTag();
+
+        $heading = human_readable($this->getMapper()->getTableName());
+
+        $html = '<h1 class="text-center">' . $heading . ' Form </h1>';
+        $html .= $form->openTag();
 
         $hiddenFields = '';
         foreach ($this->getElements() as $element) {
             if (!($element instanceof Element\Hidden)) {
-                $wrapper = $template->getInputWrapper();
-//                $element->getLabel()->setAttribute('class', $template->getLabelClass());
                 $element->setAttribute('class', $template->getInputClass());
+                $element->getLabel()->setAttribute('class', $template->getLabelClass());
+                $row = $template->getInputRowWrapper();
+                $inputWrapper = $template->getInputWrapper();
+                $inputWrapper->setElements([$element]);
 
-                $wrapper->setElements([$element->getLabel(), $element]);
+                $row->setElements([$element->getLabel(), $inputWrapper]);
 
-                $html .= $wrapper->getHtml();
+
+                $html .= $row->getHtml();
 
             } else {
                 $hiddenFields .= $element->getHtml() . "\n";
             }
         }
 
-        $html .= get_submit();
+        $row = $template->getInputRowWrapper();
+        $row->setElements([
+            new Button([
+                'name' => 'submit',
+                'id' => 'submit-button',
+                'value' => 'Submit',
+                'class' => $template->getSubmitButtonClass() . ' pull-right'
+            ])
+        ]);
+
+        $html .= $row->getHtml();
         $html .= $hiddenFields;
         $html .= $form->closeTag();
 

@@ -16,6 +16,11 @@ interface FormTemplateInterface
     public function getInputWrapper();
 
     /**
+     * @return Wrapper
+     */
+    public function getInputRowWrapper();
+
+    /**
      * @return string
      */
     public function getInputClass();
@@ -24,4 +29,14 @@ interface FormTemplateInterface
      * @return string
      */
     public function getLabelClass();
+
+    /**
+     * @return string
+     */
+    public function getButtonClass();
+
+    /**
+     * @return string
+     */
+    public function getSubmitButtonClass();
 }

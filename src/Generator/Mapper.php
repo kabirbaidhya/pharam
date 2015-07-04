@@ -49,6 +49,22 @@ class Mapper
     }
 
     /**
+     * @return Table
+     */
+    public function getTable()
+    {
+        return $this->table;
+    }
+
+    /**
+     * @return string
+     */
+    public function getTableName()
+    {
+        return $this->getTable()->getName();
+    }
+
+    /**
      * Convert all the table columns into form elements
      *
      * @return array

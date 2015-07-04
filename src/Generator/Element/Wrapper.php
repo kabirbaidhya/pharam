@@ -23,10 +23,11 @@ class Wrapper
      * @param string $tagName
      * @param array $elements
      */
-    public function __construct($tagName, array $elements = [])
+    public function __construct($tagName, array $elements = [], array $attributes = [])
     {
         $this->elements = $elements;
         $this->tagName = $tagName;
+        $this->attributes = $attributes;
     }
 
     /**

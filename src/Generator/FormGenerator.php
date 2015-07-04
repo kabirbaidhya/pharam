@@ -2,6 +2,7 @@
 
 namespace Pharam\Generator;
 
+use Illuminate\Filesystem\Filesystem;
 use Pharam\Generator\Element\Wrapper;
 
 /**
@@ -12,7 +13,6 @@ use Pharam\Generator\Element\Wrapper;
  */
 class FormGenerator extends AbstractFormGenerator
 {
-
     /**
      * Generates the form
      *
@@ -20,10 +20,35 @@ class FormGenerator extends AbstractFormGenerator
      */
     public function generate()
     {
-        $html = get_header();
+        $html = $this->getPageHtml();
 
+        $html = str_replace('${form}', $this->getFormHtml(), $html);;
+
+        return $this->formatHtml($html);
+    }
+
+    /**
+     * Format and prettify the html output
+     *
+     * @param $html
+     * @return mixed
+     */
+    protected function formatHtml($html)
+    {
+        $formatter = $this->getContainer()->make('formatter');
+
+        return $formatter->html($html);
+    }
+
+    /**
+     * Generates html for the Form
+     *
+     * @return string
+     */
+    protected function getFormHtml()
+    {
         $form = new Wrapper('form');
-        $html .= $form->openTag();
+        $html = $form->openTag();
 
         $hiddenFields = '';
         foreach ($this->getElements() as $element) {
@@ -41,21 +66,21 @@ class FormGenerator extends AbstractFormGenerator
         $html .= get_submit();
         $html .= $hiddenFields;
         $html .= $form->closeTag();
-        $html .= get_footer();
 
-        return $this->formatHtml($html);
+        return $html;
     }
 
     /**
-     * Format and prettify the html output
+     * Gets the default page template
      *
-     * @param $html
-     * @return mixed
+     * @return string
+     * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
      */
-    protected function formatHtml($html)
+    protected function getPageHtml()
     {
-        $formatter = $this->getContainer()->make('formatter');
+        /** @var Filesystem $fs */
+        $fs = $this->getContainer()->make('filesystem');
 
-        return $formatter->html($html);
+        return $fs->get(__DIR__ . '/../Misc/stubs/default-page.html');
     }
 }

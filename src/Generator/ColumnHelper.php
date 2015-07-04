@@ -16,53 +16,91 @@ use Doctrine\DBAL\Types\BooleanType;
 
 class ColumnHelper
 {
+
+    const HASH_TAG_EMAIL = 'email';
+    const HASH_TAG_PASSWORD = 'password';
+    const HASH_TAG_HIDDEN = 'hidden';
+
+    /**
+     * @param Column $column
+     * @return bool
+     */
     public function isText(Column $column)
     {
         return ($column->getType() instanceof TextType);
     }
 
+    /**
+     * @param Column $column
+     * @return bool
+     */
     public function isString(Column $column)
     {
         return ($column->getType() instanceof StringType);
     }
 
+    /**
+     * @param Column $column
+     * @return bool
+     */
     public function isBoolean(Column $column)
     {
         return ($column->getType() instanceof BooleanType);
     }
 
+    /**
+     * @param Column $column
+     * @return bool
+     */
     public function isEmail(Column $column)
     {
         return (
             $this->isString($column)
             && (
-                $this->hasCommentTag($column, 'email') ||
+                $this->hasCommentTag($column, self::HASH_TAG_EMAIL) ||
                 $this->nameContains($column, 'email')
             )
         );
     }
 
+    /**
+     * @param Column $column
+     * @return bool
+     */
     public function isPassword(Column $column)
     {
         return (
             $this->isString($column)
             && (
-                $this->hasCommentTag($column, 'password') ||
+                $this->hasCommentTag($column, self::HASH_TAG_PASSWORD) ||
                 $this->nameContains($column, 'password')
             )
         );
     }
 
+    /**
+     * @param Column $column
+     * @return bool
+     */
     public function isDate(Column $column)
     {
         return ($column->getType() instanceof DateType);
     }
 
+    /**
+     * @param Column $column
+     * @return bool
+     */
     public function isDateTime(Column $column)
     {
         return ($column->getType() instanceof DateTimeType);
     }
 
+    /**
+     * @param Column $column
+     * @param $name
+     * @return bool
+     */
     public function nameContains(Column $column, $name)
     {
         $pos = stripos($column->getName(), $name);
@@ -70,6 +108,10 @@ class ColumnHelper
         return ($pos !== false);
     }
 
+    /**
+     * @param Column $column
+     * @return bool
+     */
     public function isNumeric(Column $column)
     {
         return (
@@ -81,15 +123,37 @@ class ColumnHelper
         );
     }
 
+    /**
+     * @param Column $column
+     * @param array $fks
+     * @return bool
+     */
     public function isSelect(Column $column, array $fks)
     {
         return in_array($column->getName(), $fks);
     }
 
+    /**
+     * @param Column $column
+     * @param $tag
+     * @return bool
+     */
     public function hasCommentTag(Column $column, $tag)
     {
         $pos = stripos($column->getComment(), '#' . $tag);
 
         return ($pos !== false);
+    }
+
+    /**
+     * @param Column $column
+     * @return bool
+     */
+    public function isHidden(Column $column)
+    {
+        return (
+            $column->getAutoincrement() ||
+            $this->hasCommentTag($column, self::HASH_TAG_HIDDEN)
+        );
     }
 }

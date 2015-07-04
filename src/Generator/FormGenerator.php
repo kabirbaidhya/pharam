@@ -7,12 +7,11 @@ namespace Pharam\Generator;
  */
 class FormGenerator extends AbstractFormGenerator
 {
-
     public function generate()
     {
         $html = get_header();
-        $html.="<form>";
-        $hiddenField = null;
+        $html .= "<form>";
+        $hiddenField = '';
         foreach ($this->getElements() as $element) {
             if (!($element instanceof Element\Hidden)) {
                 $html .= get_container($element);
@@ -20,9 +19,9 @@ class FormGenerator extends AbstractFormGenerator
                 $hiddenField .= $element->getHtml();
             }
         }
-        $html.=get_submit($hiddenField);
-        $html.="</form>";
-        $html.=get_footer();
+        $html .= get_submit($hiddenField);
+        $html .= "</form>";
+        $html .= get_footer();
 
         return $html;
     }

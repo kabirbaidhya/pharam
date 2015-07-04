@@ -2,7 +2,7 @@
 
 namespace Pharam\Generator\Element;
 
-class Email extends AbstractElement
+class Hidden extends AbstractElement
 {
     /**
      *
@@ -11,6 +11,7 @@ class Email extends AbstractElement
     public function getHtml()
     {
         $input = form_input('hidden', $this);
+
         return $input;
     }
 
